@@ -1,0 +1,75 @@
+/* Hero image fit refinement
+   Keeps the editorial orbit treatment while respecting the clinic photo's landscape composition. */
+.hero__visual {
+  width: min(100%, 640px);
+  aspect-ratio: 1 / 1;
+}
+
+.hero__photo-wrap {
+  width: 82%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 44% 44% 14px 14px / 22% 22% 14px 14px;
+}
+
+.hero__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+  transform: none;
+}
+
+.hero__orbit--one {
+  width: 88%;
+  height: 88%;
+}
+
+.hero__orbit--two {
+  width: 108%;
+  height: 108%;
+}
+
+.hero__location {
+  right: 0;
+  bottom: 14%;
+}
+
+@media (max-width: 1050px) {
+  .hero__visual {
+    width: min(100%, 590px);
+  }
+
+  .hero__photo-wrap {
+    width: 84%;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero__visual {
+    width: 100%;
+    aspect-ratio: 1 / 0.96;
+    margin-top: 16px;
+  }
+
+  .hero__photo-wrap {
+    width: 88%;
+    aspect-ratio: 4 / 3;
+    border-radius: 38% 38% 12px 12px / 18% 18% 12px 12px;
+  }
+
+  .hero__orbit--one {
+    width: 92%;
+    height: 92%;
+  }
+
+  .hero__orbit--two {
+    width: 106%;
+    height: 106%;
+  }
+
+  .hero__location {
+    right: 1%;
+    bottom: 9%;
+  }
+}
