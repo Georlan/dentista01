@@ -131,6 +131,35 @@ function Header() {
 }
 
 function Hero() {
+  const [activeSpecialist, setActiveSpecialist] = useState(0);
+  const [rotationPaused, setRotationPaused] = useState(false);
+  const person = specialists[activeSpecialist];
+
+  useEffect(() => {
+    specialists.slice(1).forEach((specialist) => {
+      const image = new Image();
+      image.src = specialist.image;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (rotationPaused || specialists.length < 2) return undefined;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return undefined;
+
+    const timer = window.setInterval(() => {
+      setActiveSpecialist((current) => (current + 1) % specialists.length);
+    }, 5600);
+
+    return () => window.clearInterval(timer);
+  }, [rotationPaused]);
+
+  const selectSpecialist = (index) => {
+    setActiveSpecialist(index);
+    setRotationPaused(true);
+  };
+
   return (
     <section className="v2-hero" id="inicio">
       <div className="v2-shell v2-hero__grid">
@@ -147,12 +176,39 @@ function Hero() {
             <div><span>Localização</span><strong>Centro · Limoeiro do Norte</strong></div>
           </div>
         </div>
-        <div className="v2-hero__portrait">
-          <img src={specialists[0].image} alt={`Foto de ${specialists[0].name}`} fetchPriority="high" />
-          <div className="v2-hero__portrait-caption">
-            <span>Corpo clínico</span>
-            <strong>{specialists[0].name}</strong>
-            <p>{specialists[0].specialty}</p>
+        <div className="v2-hero__portrait" aria-label="Profissionais da IL Odontologia e Estética">
+          <img key={person.image} className="v2-hero__portrait-image" src={person.image} alt={`Foto de ${person.name}`} fetchPriority={activeSpecialist === 0 ? 'high' : 'auto'} />
+
+          <div className="v2-hero__portrait-controls" aria-label="Escolher profissional em destaque">
+            <div className="v2-hero__portrait-selector">
+              {specialists.map((specialist, index) => (
+                <button
+                  type="button"
+                  key={specialist.name}
+                  className={activeSpecialist === index ? 'is-active' : ''}
+                  onClick={() => selectSpecialist(index)}
+                  aria-label={`Mostrar ${specialist.name}`}
+                  aria-pressed={activeSpecialist === index}
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="v2-hero__portrait-pause"
+              onClick={() => setRotationPaused((value) => !value)}
+              aria-label={rotationPaused ? 'Continuar rotação automática da equipe' : 'Pausar rotação automática da equipe'}
+              title={rotationPaused ? 'Continuar' : 'Pausar'}
+            >
+              {rotationPaused ? '▶' : 'Ⅱ'}
+            </button>
+          </div>
+
+          <div className="v2-hero__portrait-caption" key={`${person.name}-caption`}>
+            <span>Corpo clínico · {String(activeSpecialist + 1).padStart(2, '0')} / {String(specialists.length).padStart(2, '0')}</span>
+            <strong>{person.name}</strong>
+            <p>{person.specialty}</p>
           </div>
         </div>
       </div>
