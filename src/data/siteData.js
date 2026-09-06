@@ -3,12 +3,21 @@ export const clinic = {
   phoneDisplay: '(88) 99984-5437',
   phoneRaw: '5588999845437',
   whatsapp: 'https://wa.me/5588999845437?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20na%20IL%20Odontologia%20e%20Est%C3%A9tica.',
+  email: 'ilodontoestetica@gmail.com',
   address: 'Rua Cândido Olímpio, 1920, Centro, Limoeiro do Norte - CE',
-  landmark: 'Próximo ao Instituto dos Olhos',
+  landmark: 'Castelo, próximo ao Instituto dos Olhos',
   routeUrl: 'https://www.google.com/maps/search/?api=1&query=Rua%20C%C3%A2ndido%20Ol%C3%ADmpio%2C%201920%2C%20Centro%2C%20Limoeiro%20do%20Norte%20-%20CE',
+  wazeUrl: 'https://waze.com/ul?q=Rua%20C%C3%A2ndido%20Ol%C3%ADmpio%201920%20Limoeiro%20do%20Norte',
   mapEmbed: 'https://www.google.com/maps?q=Rua%20C%C3%A2ndido%20Ol%C3%ADmpio%2C%201920%2C%20Centro%2C%20Limoeiro%20do%20Norte%20-%20CE&output=embed',
   patients: '1.000+',
-  scheduleNote: 'Horários em validação antes da publicação. A fonte atual apresenta uma inconsistência no horário de quinta-feira.',
+  rating: '5.0',
+  reviewsCount: 'Google Avaliações',
+  hours: [
+    { days: 'Segunda a Quarta', time: '08:00 às 12:00 · 13:00 às 20:00' },
+    { days: 'Quinta-feira', time: '08:00 às 12:00 · 13:00 às 20:00' },
+    { days: 'Sexta-feira', time: '08:00 às 12:00 · 13:00 às 18:00' },
+    { days: 'Sábado', time: '08:00 às 12:00' },
+  ],
 };
 
 export const assets = {
@@ -30,28 +39,32 @@ export const assets = {
 
 export const treatments = [
   {
-    name: 'Extração dentária',
-    description: 'Conduta cuidadosa e planejamento individual para resolver casos em que a remoção do dente é necessária.',
-  },
-  {
-    name: 'Limpeza dental',
-    description: 'Prevenção e manutenção da saúde bucal com acompanhamento profissional e atenção aos detalhes.',
+    name: 'Odontologia estética',
+    description: 'Planejamento estético personalizado, respeitando proporções, naturalidade e saúde bucal com facetas, lentes e clareamento.',
   },
   {
     name: 'Implante dentário',
-    description: 'Reabilitação para recuperar função, conforto e segurança ao sorrir.',
+    description: 'Reabilitação para recuperar função mastigatória, estabilidade e segurança completa ao sorrir.',
   },
   {
-    name: 'Odontologia estética',
-    description: 'Planejamento estético personalizado, respeitando proporções, naturalidade e saúde bucal.',
+    name: 'Ortodontia & Alinhadores',
+    description: 'Alinhamento funcional e correção da oclusão com abordagens modernas, discretas e confortáveis.',
+  },
+  {
+    name: 'Limpeza dental',
+    description: 'Prevenção e manutenção da saúde bucal com acompanhamento profissional minucioso e profilaxia avançada.',
   },
   {
     name: 'Tratamento de canal',
-    description: 'Tratamento para preservar o dente, controlar desconfortos e evitar complicações futuras.',
+    description: 'Tratamento endodôntico para preservar a estrutura natural do dente, controlar desconfortos e evitar complicações.',
   },
   {
     name: 'Odontopediatria',
-    description: 'Cuidado odontológico para crianças com abordagem acolhedora e foco em prevenção desde cedo.',
+    description: 'Cuidado odontológico para crianças com acolhimento afetivo e foco em saúde preventiva desde cedo.',
+  },
+  {
+    name: 'Extração dentária',
+    description: 'Conduta cuidadosa e planejamento individualizado para casos em que a remoção do dente é estritamente necessária.',
   },
 ];
 
@@ -59,28 +72,84 @@ export const specialists = [
   {
     name: 'Dra. Layla Beatriz',
     specialty: 'Cirurgiã-dentista clínica geral, pós-graduada em estética dental.',
+    cro: 'CRO-CE',
     image: assets.team[0],
   },
   {
     name: 'Dr. Hugo Mota',
     specialty: 'Especialista em implantes e prótese dentária.',
+    cro: 'CRO-CE',
     image: assets.team[1],
   },
   {
     name: 'Dra. Hanna Isa',
     specialty: 'Especialista em ortodontia.',
+    cro: 'CRO-CE',
     image: assets.team[2],
+  },
+];
+
+export const beforeAfterCases = [
+  {
+    id: 'lentes-facetas',
+    title: 'Harmonização Estética & Lentes',
+    category: 'Odontologia Estética',
+    badge: 'Caso Clínico Real',
+    description: 'Planejamento digital com refinamento de proporções, iluminação de cor e acabamento em harmonia com os traços faciais.',
+    details: 'Devolução de simetria e alinhamento do sorriso com preservação da estrutura dental.',
+    image: assets.gallery[0],
+    whatsappMsg: 'Olá! Vi o caso de Harmonização e Lentes no site da IL e gostaria de saber mais sobre essa avaliação.',
+  },
+  {
+    id: 'reabilitacao-diastema',
+    title: 'Fechamento de Espaços & Diastema',
+    category: 'Reabilitação do Sorriso',
+    badge: 'Precisão Anatômica',
+    description: 'Fechamento de diastema anterior e restabelecimento da morfologia dental natural com cerâmica de alta durabilidade.',
+    details: 'Recuperação do ponto de contato e da curvatura estética do sorriso.',
+    image: assets.gallery[3],
+    whatsappMsg: 'Olá! Vi a transformação de fechamento de diastema no site e gostaria de agendar uma consulta.',
+  },
+  {
+    id: 'clareamento-microestetica',
+    title: 'Clareamento & Microestética',
+    category: 'Estética & Saúde',
+    badge: 'Naturalidade',
+    description: 'Protocolo de clareamento guiado aliado a ajustes anatômicos finos para vitalidade e luminosidade natural.',
+    details: 'Brilho uniforme e dentes naturalmente destacados sem sensibilidade.',
+    image: assets.gallery[1],
+    whatsappMsg: 'Olá! Gostaria de agendar uma consulta para avaliação de clareamento na IL Odontologia.',
+  },
+  {
+    id: 'simetria-gengival',
+    title: 'Contorno & Simetria Dental',
+    category: 'Estética & Prótese',
+    badge: 'Harmonia Completa',
+    description: 'Alinhamento tridimensional da linha do sorriso e correção de desníveis funcionais e estéticos.',
+    details: 'Equilíbrio funcional entre estética dos dentes e arco do sorriso.',
+    image: assets.gallery[2],
+    whatsappMsg: 'Olá! Gostaria de saber mais sobre o tratamento de alinhamento e simetria do sorriso.',
   },
 ];
 
 export const testimonials = [
   {
+    name: 'Taianne Coelho',
+    quote: 'São profissionais extremamente comprometidos com o cliente. Não poderia deixar de falar sobre a dedicação, qualidade dos materiais, organização e conhecimento em cada procedimento. Amei ser atendida!',
+    rating: 5,
+    tag: 'Paciente Verificada',
+  },
+  {
     name: 'Sirley Lima',
-    quote: 'Minha experiência foi ótima desde o atendimento on-line até a consulta. Confesso que tinha um pouquinho de medo de ir ao dentista, mas a Dr Layla é super atenciosa, e tem muita empatia.',
+    quote: 'Minha experiência foi ótima desde o atendimento on-line até a consulta. Confesso que tinha um pouquinho de medo de ir ao dentista, mas a Dra. Layla é super atenciosa e tem muita empatia.',
+    rating: 5,
+    tag: 'Paciente Verificada',
   },
   {
     name: 'Cosme Silva',
     quote: 'Me senti em casa, fiquei à vontade! Atendimento de ótima qualidade, profissionais altamente capacitados, um ambiente muito aconchegante. Me senti muito bem desde a hora da espera. Recomendo!',
+    rating: 5,
+    tag: 'Paciente Verificado',
   },
 ];
 
@@ -88,12 +157,12 @@ export const agreements = [
   { name: 'Bradesco Dental', status: 'Atendido' },
   { name: 'Brasil Dental', status: 'Atendido' },
   { name: 'Odontoprev', status: 'Atendido' },
-  { name: 'MetLife', status: 'Em validação' },
+  { name: 'MetLife', status: 'Em breve' },
 ];
 
 export const trustItems = [
-  'Atendimento personalizado',
-  'Profissionais especializados',
-  'Tecnologia e conforto',
-  'Odontologia e estética em um só lugar',
+  'Atendimento personalizado e acolhedor',
+  'Corpo clínico com especialistas dedicados',
+  'Ambiente confortável e tecnologia precisa',
+  'Saúde e estética integradas em um só lugar',
 ];
