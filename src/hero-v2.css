@@ -1,0 +1,262 @@
+/* Hero V2 — direção mais limpa, cinematográfica e vendável.
+   Remove o enquadramento ornamental e deixa a própria clínica ser o destaque. */
+
+.hero {
+  min-height: 100svh;
+  background:
+    linear-gradient(90deg, #090908 0%, #090908 57%, #11100e 57%, #11100e 100%);
+}
+
+.hero__orb,
+.hero__orbit {
+  display: none !important;
+}
+
+.hero__watermark {
+  left: -0.04em;
+  bottom: -0.18em;
+  font-size: clamp(340px, 42vw, 660px);
+  color: rgba(255, 255, 255, 0.018);
+}
+
+.hero__grid {
+  min-height: calc(100svh - var(--header-h) - 112px);
+  grid-template-columns: minmax(0, 0.98fr) minmax(520px, 0.9fr);
+  gap: clamp(52px, 6.5vw, 108px);
+  padding-top: 44px;
+  padding-bottom: 40px;
+}
+
+.hero__copy {
+  max-width: 720px;
+  padding-right: clamp(0px, 2vw, 30px);
+}
+
+.hero__copy h1 {
+  margin-top: 20px;
+  max-width: 700px;
+  font-size: clamp(56px, 6vw, 104px);
+}
+
+.hero__lead {
+  max-width: 520px;
+}
+
+.hero__visual {
+  position: relative;
+  justify-self: stretch;
+  width: 100%;
+  height: clamp(500px, 63vh, 700px);
+  aspect-ratio: auto;
+  display: block;
+  isolation: isolate;
+}
+
+.hero__visual::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 24px -24px -24px 24px;
+  border: 1px solid rgba(214, 195, 154, 0.24);
+  pointer-events: none;
+}
+
+.hero__photo-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 2px 2px 46px 2px;
+  background: #171611;
+  box-shadow: 0 38px 90px rgba(0, 0, 0, 0.34);
+}
+
+.hero__photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 7, 6, 0.2), transparent 24%),
+    linear-gradient(180deg, transparent 68%, rgba(7, 7, 6, 0.2));
+  pointer-events: none;
+}
+
+.hero__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 47%;
+  transform: none;
+}
+
+.hero__location {
+  z-index: 3;
+  right: -18px;
+  bottom: 24px;
+  gap: 12px;
+  padding: 12px 14px 12px 12px;
+  background: rgba(9, 9, 8, 0.92);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.hero__location > span {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  color: #0b0b0a;
+}
+
+.hero__location p {
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+
+.hero__facts {
+  min-height: 112px;
+  grid-template-columns: 170px 170px 1fr;
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    background: #090908;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.82fr);
+    gap: 44px;
+  }
+
+  .hero__visual {
+    height: clamp(460px, 58vh, 620px);
+  }
+
+  .hero__visual::before {
+    inset: 18px -18px -18px 18px;
+  }
+}
+
+@media (max-width: 920px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .hero__grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding-top: 72px;
+    padding-bottom: 46px;
+  }
+
+  .hero__copy {
+    max-width: 760px;
+    padding-right: 0;
+  }
+
+  .hero__copy h1 {
+    max-width: 760px;
+  }
+
+  .hero__visual {
+    width: calc(100% - 18px);
+    height: auto;
+    aspect-ratio: 16 / 10;
+    justify-self: start;
+  }
+
+  .hero__photo-wrap {
+    border-radius: 2px 2px 34px 2px;
+  }
+
+  .hero__visual::before {
+    inset: 14px -14px -14px 14px;
+  }
+
+  .hero__location {
+    right: -14px;
+    bottom: 18px;
+  }
+
+  .hero__facts {
+    grid-template-columns: 1fr 1fr;
+    min-height: 104px;
+  }
+
+  .hero__address {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__grid {
+    padding-top: 54px;
+    gap: 34px;
+  }
+
+  .hero__copy h1 {
+    margin: 16px 0 22px;
+    font-size: clamp(48px, 15vw, 72px);
+    line-height: 0.9;
+  }
+
+  .hero__copy h1 span {
+    margin-top: 0.12em;
+    font-size: 0.6em;
+    line-height: 1.05;
+  }
+
+  .hero__lead {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .hero__visual {
+    width: calc(100% - 10px);
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero__visual::before {
+    inset: 10px -10px -10px 10px;
+  }
+
+  .hero__photo-wrap {
+    border-radius: 2px 2px 26px 2px;
+  }
+
+  .hero__photo-wrap img {
+    object-position: 52% 50%;
+  }
+
+  .hero__location {
+    right: -10px;
+    bottom: 12px;
+    padding: 9px 10px 9px 9px;
+  }
+
+  .hero__location > span {
+    width: 31px;
+    height: 31px;
+  }
+
+  .hero__location p {
+    font-size: 9px;
+  }
+
+  .hero__facts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
