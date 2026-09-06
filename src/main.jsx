@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles.css';
-import './hero-fix.css';
-import './hero-v2.css';
+import AppV2 from './AppV2';
+import './app-v2.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <AppV2 />
   </React.StrictMode>,
 );
