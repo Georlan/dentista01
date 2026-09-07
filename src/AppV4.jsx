@@ -42,24 +42,33 @@ const secondaryCare = [
   },
 ];
 
-const agreements = ['Bradesco Dental', 'Brasil Dental', 'Odontoprev'];
+const agreements = [
+  { name: 'Bradesco Dental', status: 'Atendimento confirmado' },
+  { name: 'Brasil Dental', status: 'Atendimento confirmado' },
+  { name: 'Odontoprev', status: 'Atendimento confirmado' },
+  { name: 'MetLife', status: 'Em breve' },
+];
 
 const faq = [
   {
     q: 'Como faço para agendar uma consulta?',
-    a: 'Você pode iniciar o agendamento pelo WhatsApp e combinar o melhor horário diretamente com a recepção da clínica.',
+    a: 'Você pode iniciar o agendamento pelo WhatsApp no número (88) 99984-5437 e combinar o melhor dia e horário diretamente com a recepção.',
   },
   {
     q: 'Quais tratamentos a clínica oferece?',
-    a: 'A clínica oferece odontologia estética, implantes, ortodontia, limpeza dental, tratamento de canal, odontopediatria e extração dentária.',
+    a: 'A clínica oferece odontologia estética, implantes dentários, ortodontia (aparelhos), limpeza dental, tratamento de canal, odontopediatria e extração dentária.',
   },
   {
     q: 'Quais convênios são atendidos?',
-    a: 'A clínica atende Bradesco Dental, Brasil Dental e Odontoprev.',
+    a: 'Atendemos Bradesco Dental, Brasil Dental e Odontoprev. O credenciamento da MetLife está em andamento (em breve).',
+  },
+  {
+    q: 'Qual o horário de atendimento da clínica?',
+    a: 'Segunda a quinta: 08h às 12h e 13h às 20h. Sexta-feira: 08h às 12h e 13h às 18h. Sábado: 08h às 12h. Domingo: Fechado.',
   },
   {
     q: 'Onde fica a IL Odontologia e Estética?',
-    a: 'Rua Cândido Olímpio, 1920, Centro, Limoeiro do Norte - CE, próximo ao Instituto dos Olhos.',
+    a: 'Rua Cândido Olímpio, 1920, Centro, Limoeiro do Norte - CE (no Castelo, próximo ao Instituto dos Olhos).',
   },
 ];
 
@@ -267,7 +276,12 @@ function Hero() {
 }
 
 function TrustStrip() {
-  const items = ['Atendimento personalizado', 'Profissionais especializados', 'Ambiente confortável', 'Saúde e estética integradas'];
+  const items = [
+    'Atendimento humanizado e próximo',
+    '1.000+ pacientes atendidos',
+    'Corpo clínico especializado',
+    'Castelo · Limoeiro do Norte - CE',
+  ];
   return (
     <section className="v4-trust" aria-label="Diferenciais da clínica">
       <div className="v4-shell v4-trust__grid">
@@ -516,10 +530,10 @@ function Info() {
           <p className="v4-kicker v4-kicker--dark">Convênios</p>
           <h2>Atendimento também por convênio.</h2>
           <div className="v4-agreements">
-            {agreements.map((name) => (
-              <div key={name}>
-                <strong>{name}</strong>
-                <span>Atendimento confirmado</span>
+            {agreements.map((item) => (
+              <div key={item.name}>
+                <strong>{item.name}</strong>
+                <span>{item.status}</span>
               </div>
             ))}
           </div>
@@ -552,7 +566,7 @@ function Contact() {
     <section className="v4-contact" id="contato">
       <div className="v4-shell v4-contact__grid">
         <div className="v4-contact__copy" data-reveal>
-          <p className="v4-kicker">Contato</p>
+          <p className="v4-kicker">Contato & Localização</p>
           <h2>Pronto para cuidar do seu sorriso?</h2>
           <p>Fale com a equipe da IL Odontologia e Estética e agende sua consulta.</p>
           <div className="v4-actions">
@@ -561,8 +575,12 @@ function Contact() {
           </div>
           <div className="v4-contact__facts">
             <div>
-              <span>Telefone</span>
+              <span>Telefone / WhatsApp</span>
               <a href={`tel:+${clinic.phoneRaw}`}>{clinic.phoneDisplay}</a>
+            </div>
+            <div>
+              <span>E-mail</span>
+              <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
             </div>
             <div>
               <span>Endereço</span>
@@ -570,7 +588,15 @@ function Contact() {
             </div>
             <div>
               <span>Referência</span>
-              <p>Próximo ao Instituto dos Olhos</p>
+              <p>{clinic.landmark}</p>
+            </div>
+            <div>
+              <span>Horário</span>
+              <p>
+                Seg a Qui: 08h às 12h · 13h às 20h<br />
+                Sexta-feira: 08h às 12h · 13h às 18h<br />
+                Sábado: 08h às 12h
+              </p>
             </div>
           </div>
         </div>
@@ -595,7 +621,7 @@ function Footer() {
       <div className="v4-shell v4-footer__grid">
         <div>
           <img src={assets.logo} alt="IL Odontologia e Estética" />
-          <p>Odontologia, estética e cuidado humano em Limoeiro do Norte - CE.</p>
+          <p>Seu sorriso é nossa missão. Odontologia, estética e cuidado humano em Limoeiro do Norte - CE.</p>
         </div>
         <div>
           <span>Navegação</span>
@@ -607,13 +633,14 @@ function Footer() {
         </div>
         <div>
           <span>Contato</span>
-          <a href={clinic.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
-          <a href={`tel:+${clinic.phoneRaw}`}>{clinic.phoneDisplay}</a>
+          <a href={clinic.whatsapp} target="_blank" rel="noreferrer">WhatsApp: {clinic.phoneDisplay}</a>
+          <a href={`tel:+${clinic.phoneRaw}`}>Telefone: {clinic.phoneDisplay}</a>
+          <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
           <a href={clinic.routeUrl} target="_blank" rel="noreferrer">Como chegar</a>
         </div>
       </div>
       <div className="v4-shell v4-footer__bottom">
-        <span>© {new Date().getFullYear()} IL Odontologia e Estética</span>
+        <span>© {new Date().getFullYear()} IL Odontologia e Estética · Todos os direitos reservados</span>
         <span>Limoeiro do Norte · CE</span>
       </div>
     </footer>

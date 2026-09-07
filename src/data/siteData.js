@@ -83,7 +83,7 @@ export const specialists = [
   },
   {
     name: 'Dra. Hanna Isa',
-    specialty: 'Especialista em ortodontia.',
+    specialty: 'Especialista em ortodontia (aparelhos dentários).',
     cro: 'CRO-CE',
     image: assets.team[2],
   },
