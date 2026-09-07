@@ -33,7 +33,7 @@ export const assets = {
     'https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280788/xefqks6xuwtnhwhcspln.jpg',
     'https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280810/themq4qigywglyptomhg.png',
     'https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280833/iqnxvou5fwdbjtq2m9hu.png',
-    'https://res.cloudinary.com/codental/image/upload/c_crop,h_1080,w_995,x_85,y_0/c_pad,b_black,g_east,h_1080,w_1080/f_auto,q_auto/v1746280852/bennez79zg81hvsnbnp2.png',
+    'https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280852/bennez79zg81hvsnbnp2.png',
   ],
 };
 
