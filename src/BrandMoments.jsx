@@ -50,15 +50,35 @@ export default function BrandMoments() {
         const travel = rect.height + viewport;
         const progress = clamp((viewport - rect.top) / travel);
         const center = clamp((viewport * 0.5 - (rect.top + rect.height * 0.5)) / viewport, -1, 1);
+        const localShift = (progress - 0.5) * 70;
+        const reveal = clamp(progress * 1.42) * 100;
+
         section.style.setProperty('--brand-progress', progress.toFixed(4));
         section.style.setProperty('--brand-center', center.toFixed(4));
+        section.style.setProperty('--brand-shift', `${localShift.toFixed(2)}px`);
+        section.style.setProperty('--brand-reveal', `${reveal.toFixed(2)}%`);
       });
+
+      const hero = document.querySelector('.v2-hero');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const heroProgress = clamp(-rect.top / Math.max(1, rect.height));
+        hero.style.setProperty('--brand-hero-image-scale', (1 + heroProgress * 0.055).toFixed(4));
+        hero.style.setProperty('--brand-hero-copy-opacity', (1 - heroProgress * 0.34).toFixed(4));
+        hero.style.setProperty('--brand-hero-copy-y', `${(-heroProgress * 32).toFixed(2)}px`);
+      }
 
       people.forEach((person) => {
         const rect = person.getBoundingClientRect();
         const centerDistance = Math.abs((rect.top + rect.height * 0.5) - viewport * 0.52);
         const focus = 1 - clamp(centerDistance / (viewport * 0.72));
+        const y = (1 - focus) * 20;
+        const scale = 0.972 + focus * 0.028;
+        const opacity = 0.72 + focus * 0.28;
         person.style.setProperty('--brand-focus', focus.toFixed(4));
+        person.style.setProperty('--brand-person-y', `${y.toFixed(2)}px`);
+        person.style.setProperty('--brand-person-scale', scale.toFixed(4));
+        person.style.setProperty('--brand-person-opacity', opacity.toFixed(4));
       });
 
       raf = 0;
@@ -110,11 +130,19 @@ export default function BrandMoments() {
         section.classList.remove('brand-v4-section');
         section.style.removeProperty('--brand-progress');
         section.style.removeProperty('--brand-center');
+        section.style.removeProperty('--brand-shift');
+        section.style.removeProperty('--brand-reveal');
         section.style.removeProperty('--brand-section-index');
+        section.style.removeProperty('--brand-hero-image-scale');
+        section.style.removeProperty('--brand-hero-copy-opacity');
+        section.style.removeProperty('--brand-hero-copy-y');
       });
       people.forEach((person) => {
         person.style.removeProperty('--brand-focus');
         person.style.removeProperty('--brand-person-index');
+        person.style.removeProperty('--brand-person-y');
+        person.style.removeProperty('--brand-person-scale');
+        person.style.removeProperty('--brand-person-opacity');
       });
       root.classList.remove('brand-v4');
     };
