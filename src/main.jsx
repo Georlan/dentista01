@@ -7,9 +7,6 @@ import './app-v4.css';
 import './v4-fixes.css';
 import './v4-motion.css';
 
-// Generated presentation asset for Transformation 02. Keeping it isolated here
-// lets the clinical gallery data remain untouched while the V4 showcase uses
-// the cleaned composition requested for the public site.
 document.documentElement.style.setProperty(
   '--transformacao-02-image',
   `url("${transformacao02Image}")`,
@@ -21,4 +18,25 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 );
 
-window.requestAnimationFrame(() => initV4Motion());
+// AppV4 still references the old Cloudinary asset in a couple of places.
+// Replace only that compromised source with the cleaned presentation artwork,
+// including after React swaps the active transformation.
+const replaceCompromisedAsset = () => {
+  document.querySelectorAll('img[src*="bennez79zg81hvsnbnp2"]').forEach((image) => {
+    image.src = transformacao02Image;
+    image.dataset.cleanedTransformation = 'true';
+  });
+};
+
+window.requestAnimationFrame(() => {
+  replaceCompromisedAsset();
+  initV4Motion();
+
+  const observer = new MutationObserver(replaceCompromisedAsset);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['src'],
+  });
+});
