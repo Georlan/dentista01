@@ -65,40 +65,23 @@
   object-fit: contain;
   object-position: center;
   background: #050506;
+  opacity: 1;
 }
 
-/*
-  Transformation 02 uses the new cleaned presentation artwork requested by
-  the client. The original compromised file stays in the data source only so
-  existing case switching logic remains untouched.
-*/
-.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2']) {
-  background-color: #050506;
-  background-image: var(--transformacao-02-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2']) > img {
-  opacity: 0;
-}
-
-.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::before,
-.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::after {
+/* The cleaned presentation artwork is now injected directly into the image src.
+   Do not hide it behind CSS backgrounds or masks. */
+.v4-results__stage figure::before,
+.v4-results__stage figure::after {
   display: none !important;
 }
 
-/* The same compromised source was also used in the third treatment panel. */
+/* Third treatment panel: display its actual image instead of a hard-coded fallback. */
 .v4-care-card:nth-child(3) {
-  background:
-    linear-gradient(180deg, rgba(5, 5, 6, 0.14), rgba(5, 5, 6, 0.66)),
-    url('https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280833/iqnxvou5fwdbjtq2m9hu.png')
-    center / cover no-repeat;
+  background: #111214;
 }
 
 .v4-care-card:nth-child(3) > img {
-  opacity: 0;
+  opacity: 1;
 }
 
 .v4-results__copy {
