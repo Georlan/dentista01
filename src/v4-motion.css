@@ -1,0 +1,265 @@
+/* Premium motion layer: light, CSS-first, progressively enhanced. */
+
+.v4-scroll-progress {
+  position: fixed;
+  z-index: 1400;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  transform-origin: left center;
+}
+.v4-scroll-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #9c815f, #d8c3a1 58%, #f1e4ce);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.v4-header {
+  transition: background .36s ease, border-color .36s ease, box-shadow .36s ease, backdrop-filter .36s ease;
+}
+.v4-header.is-scrolled {
+  background: rgba(8, 8, 9, .88);
+  border-bottom-color: rgba(255,255,255,.11);
+  box-shadow: 0 14px 44px rgba(0,0,0,.16);
+  backdrop-filter: blur(24px) saturate(1.1);
+}
+
+/* Hero leaves the viewport with depth instead of a flat cut. */
+.v4-hero__copy {
+  transform: translate3d(0, calc(var(--hero-scroll, 0) * -26px), 0);
+  opacity: calc(1 - (var(--hero-scroll, 0) * .28));
+  will-change: transform, opacity;
+}
+.v4-hero__photo {
+  transform: scale(calc(1 + (var(--hero-scroll, 0) * .035)));
+  transform-origin: 58% 36%;
+  will-change: transform;
+}
+.v4-hero__person {
+  transform: translate3d(0, calc(var(--hero-scroll, 0) * -14px), 0);
+  opacity: calc(1 - (var(--hero-scroll, 0) * .35));
+}
+.v4-hero__selector {
+  transform: translate3d(0, calc(var(--hero-scroll, 0) * 10px), 0);
+}
+
+/* A slightly more cinematic first-load sequence. */
+.v4-motion-ready .v4-hero .v4-kicker,
+.v4-motion-ready .v4-hero h1,
+.v4-motion-ready .v4-hero__lead,
+.v4-motion-ready .v4-hero .v4-actions {
+  animation: v4-hero-rise .78s cubic-bezier(.16,1,.3,1) both;
+}
+.v4-motion-ready .v4-hero h1 { animation-delay: .07s; }
+.v4-motion-ready .v4-hero__lead { animation-delay: .14s; }
+.v4-motion-ready .v4-hero .v4-actions { animation-delay: .21s; }
+@keyframes v4-hero-rise {
+  from { opacity: 0; transform: translateY(22px); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* Section reveals use a restrained mask rather than generic fade-only motion. */
+.v4-motion-reveal {
+  opacity: 0 !important;
+  transform: translate3d(0, 34px, 0) scale(.992) !important;
+  clip-path: inset(0 0 12% 0);
+  filter: blur(3px);
+  transition:
+    opacity .78s cubic-bezier(.16,1,.3,1),
+    transform .92s cubic-bezier(.16,1,.3,1),
+    clip-path .92s cubic-bezier(.16,1,.3,1),
+    filter .72s ease !important;
+  will-change: transform, opacity, clip-path;
+}
+.v4-motion-reveal.is-motion-visible,
+.v4-motion-reveal.is-visible.is-motion-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: inset(0 0 0 0);
+  filter: blur(0);
+}
+
+.v4-motion-media {
+  isolation: isolate;
+}
+.v4-motion-media::after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(197,168,128,.17), transparent 28%, transparent 70%, rgba(255,255,255,.08));
+  opacity: 0;
+  transform: translateX(-8%);
+  transition: opacity .8s ease, transform 1s cubic-bezier(.16,1,.3,1);
+}
+.v4-motion-media.is-motion-visible::after,
+.v4-motion-reveal.is-motion-visible.v4-motion-media::after {
+  opacity: .65;
+  transform: none;
+}
+
+/* Stagger only where it adds rhythm; not every element on the page. */
+.v4-motion-stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .62s ease, transform .72s cubic-bezier(.16,1,.3,1);
+  transition-delay: calc(var(--motion-index, 0) * 70ms);
+}
+.v4-motion-stagger.is-motion-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Softer transitions between major light/dark surfaces. */
+.v4-care,
+.v4-results,
+.v4-specialists,
+.v4-experience,
+.v4-testimonials,
+.v4-info,
+.v4-contact {
+  position: relative;
+}
+.v4-care::before,
+.v4-specialists::before,
+.v4-experience::before,
+.v4-contact::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.025), transparent);
+}
+.v4-care > *, .v4-specialists > *, .v4-experience > *, .v4-contact > * { position: relative; z-index: 1; }
+
+/* A subtle light field on dark sections, only on precise pointers. */
+.v4-motion-ambient::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(620px circle at var(--motion-x, 50%) var(--motion-y, 45%), rgba(197,168,128,.075), transparent 56%);
+  opacity: .9;
+}
+
+/* Treatment triptych gets a more premium, responsive light behavior. */
+.v4-care-card::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,.12) 48%, transparent 74%);
+  transform: translateX(-115%);
+  transition: transform .85s cubic-bezier(.16,1,.3,1);
+}
+.v4-care-card:hover::after,
+.v4-care-card:focus-within::after { transform: translateX(115%); }
+.v4-care-card__content { z-index: 3; }
+.v4-care-card h3 { transition: transform .42s cubic-bezier(.16,1,.3,1), letter-spacing .42s ease; }
+.v4-care-card.is-active h3 { transform: translateY(-2px); letter-spacing: -.04em; }
+
+/* Editorial media feels alive on hover without looking like a template card. */
+.v4-about__media,
+.v4-results__stage,
+.v4-experience__media,
+.v4-map {
+  transition: transform .65s cubic-bezier(.16,1,.3,1), box-shadow .65s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .v4-about__media:hover,
+  .v4-results__stage:hover,
+  .v4-experience__media:hover,
+  .v4-map:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 80px rgba(0,0,0,.11);
+  }
+}
+
+/* Specialists arrive as a sequence rather than a static grid. */
+.v4-person {
+  transition: transform .55s cubic-bezier(.16,1,.3,1), opacity .45s ease;
+}
+.v4-specialists__track.is-motion-visible .v4-person:nth-child(2) { transition-delay: 90ms; }
+.v4-specialists__track.is-motion-visible .v4-person:nth-child(3) { transition-delay: 180ms; }
+.v4-person__media::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: border-color .35s ease;
+}
+.v4-person:hover .v4-person__media::before { border-color: rgba(197,168,128,.42); }
+
+/* Before/after presentation: image enters as an exhibition piece. */
+.v4-results__stage figure {
+  position: relative;
+}
+.v4-results__stage figure::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: rgba(197,168,128,.42);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .9s cubic-bezier(.16,1,.3,1) .22s;
+}
+.v4-results__stage.is-motion-visible figure::before { transform: scaleY(1); }
+.v4-results__stage figure img {
+  transition: transform .7s cubic-bezier(.16,1,.3,1), filter .5s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .v4-results__stage:hover figure img { transform: scale(1.012); }
+}
+
+/* FAQ and testimonial interactions feel more crafted. */
+.v4-faq article {
+  transition: background .32s ease, padding-left .32s cubic-bezier(.16,1,.3,1);
+}
+.v4-faq article:hover { background: rgba(197,168,128,.055); padding-left: 10px; }
+.v4-testimonials blockquote p { transition: letter-spacing .4s ease; }
+.v4-testimonials blockquote:hover p { letter-spacing: -.01em; }
+
+/* Mobile keeps motion compact and avoids blocking content. */
+@media (max-width: 760px) {
+  .v4-hero__copy { transform: translate3d(0, calc(var(--hero-scroll, 0) * -10px), 0); }
+  .v4-hero__photo { transform: scale(calc(1 + (var(--hero-scroll, 0) * .018))); }
+  .v4-motion-reveal { transform: translate3d(0, 22px, 0) !important; clip-path: inset(0 0 7% 0); }
+  .v4-scroll-progress { height: 1.5px; }
+  .v4-motion-ambient::after { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v4-scroll-progress { display: none; }
+  .v4-motion-reveal,
+  .v4-motion-stagger > *,
+  .v4-hero__copy,
+  .v4-hero__photo,
+  .v4-hero__person,
+  .v4-hero__selector {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
