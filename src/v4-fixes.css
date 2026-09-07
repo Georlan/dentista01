@@ -68,17 +68,16 @@
 }
 
 /*
-  The original Transformação 02 file includes a narrow slice of the patient
-  on the far-left edge. Previous treatment cropped the whole left strip and
-  also removed part of the dental record. Keep the source untouched, but do
-  not show this compromised composition publicly. A clean real clinical asset
-  is used as a temporary visual until a dedicated edited original is supplied.
+  Transformation 02 uses the new cleaned presentation artwork requested by
+  the client. The original compromised file stays in the data source only so
+  existing case switching logic remains untouched.
 */
 .v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2']) {
-  background:
-    #050506
-    url('https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280833/iqnxvou5fwdbjtq2m9hu.png')
-    center / contain no-repeat;
+  background-color: #050506;
+  background-image: var(--transformacao-02-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2']) > img {
@@ -93,7 +92,7 @@
 /* The same compromised source was also used in the third treatment panel. */
 .v4-care-card:nth-child(3) {
   background:
-    #111214
+    linear-gradient(180deg, rgba(5, 5, 6, 0.14), rgba(5, 5, 6, 0.66)),
     url('https://res.cloudinary.com/codental/image/upload/f_auto,c_limit,w_1800,q_auto/v1746280833/iqnxvou5fwdbjtq2m9hu.png')
     center / cover no-repeat;
 }
