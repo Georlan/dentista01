@@ -51,9 +51,11 @@
 }
 
 .v4-results__stage figure {
+  position: relative;
   width: 100%;
   min-height: 0;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
   background: #050506;
 }
 
@@ -63,6 +65,36 @@
   object-fit: contain;
   object-position: center;
   background: #050506;
+}
+
+/*
+  The original Transformação 02 file includes a narrow slice of the patient
+  on the far-left edge. Previous treatment cropped the whole left strip and
+  also removed part of the dental record. Keep the full original image and
+  mask only the non-clinical intrusion with two tapered black shapes.
+*/
+.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::before,
+.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  pointer-events: none;
+  background: #050506;
+}
+
+.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::before {
+  top: 24%;
+  width: 8.4%;
+  height: 48%;
+  clip-path: polygon(0 0, 22% 0, 72% 16%, 100% 38%, 92% 67%, 58% 86%, 18% 100%, 0 100%);
+}
+
+.v4-results__stage figure:has(img[src*='bennez79zg81hvsnbnp2'])::after {
+  top: 68%;
+  width: 4.6%;
+  height: 19%;
+  clip-path: polygon(0 0, 100% 0, 58% 36%, 30% 72%, 0 100%);
 }
 
 .v4-results__copy {
