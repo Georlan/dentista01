@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const ROTATION_INTERVAL_MS = 3000;
+const ROTATION_INTERVAL_MS = 2600;
 
 export default function HeroTeamAutoRotation() {
   useEffect(() => {
