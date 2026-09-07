@@ -1,39 +1,44 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { assets, clinic, specialists, testimonials } from './data/siteData';
+import transformacao02 from './assets/cases/transformacao02.jpg';
 
 const primaryCare = [
   {
     name: 'Odontologia estética',
     short: 'Estética com naturalidade',
-    description: 'Planejamento individualizado para harmonizar sorriso, saúde bucal e naturalidade.',
+    description: 'Planejamento individualizado para harmonizar sorriso, saúde bucal e proporções faciais com facetas, lentes e clareamento.',
     image: assets.gallery[1],
   },
   {
     name: 'Implante dentário',
-    short: 'Função e segurança',
-    description: 'Reabilitação planejada para recuperar função, estabilidade e segurança ao sorrir e mastigar.',
+    short: 'Função e estabilidade',
+    description: 'Reabilitação cirúrgica e protética planejada para recuperar função mastigatória, segurança e estabilidade.',
     image: assets.hero,
   },
   {
-    name: 'Odontopediatria',
-    short: 'Cuidado desde cedo',
-    description: 'Acolhimento, prevenção e linguagem adequada para tornar a experiência infantil mais tranquila.',
-    image: assets.gallery[3],
+    name: 'Ortodontia',
+    short: 'Alinhamento e oclusão',
+    description: 'Correção de mordida, alinhamento funcional e harmonia do arco dental com abordagens modernas, discretas e confortáveis.',
+    image: assets.gallery[2],
   },
 ];
 
 const secondaryCare = [
   {
     name: 'Limpeza dental',
-    description: 'Prevenção e manutenção da saúde bucal com acompanhamento profissional cuidadoso.',
+    description: 'Profilaxia e prevenção contínua para manutenção da saúde periodontal e bem-estar bucal.',
   },
   {
     name: 'Tratamento de canal',
-    description: 'Tratamento para preservar a estrutura dental e evitar complicações futuras.',
+    description: 'Tratamento endodôntico para preservar a estrutura dental e evitar dores e complicações futuras.',
+  },
+  {
+    name: 'Odontopediatria',
+    description: 'Acolhimento afetivo e cuidado preventivo desde a infância para uma experiência positiva e tranquila.',
   },
   {
     name: 'Extração dentária',
-    description: 'Planejamento individualizado para situações em que a remoção do dente é necessária.',
+    description: 'Conduta segura e planejamento individualizado quando a remoção do dente é clinicamente indicada.',
   },
 ];
 
@@ -46,7 +51,7 @@ const faq = [
   },
   {
     q: 'Quais tratamentos a clínica oferece?',
-    a: 'A clínica oferece odontologia estética, implantes, limpeza dental, tratamento de canal, odontopediatria e extração dentária.',
+    a: 'A clínica oferece odontologia estética, implantes, ortodontia, limpeza dental, tratamento de canal, odontopediatria e extração dentária.',
   },
   {
     q: 'Quais convênios são atendidos?',
@@ -61,13 +66,15 @@ const faq = [
 const beforeAfter = [
   {
     title: 'Transformação 01',
+    category: 'Harmonização do Sorriso & Lentes',
     image: assets.gallery[1],
-    caption: 'Registro clínico apresentado pela IL Odontologia e Estética.',
+    caption: 'Registro clínico de harmonização estética e proporção do sorriso realizado na IL Odontologia e Estética.',
   },
   {
     title: 'Transformação 02',
-    image: assets.gallery[3],
-    caption: 'Registro clínico apresentado pela IL Odontologia e Estética.',
+    category: 'Fechamento de Diastema & Reanatomização',
+    image: transformacao02,
+    caption: 'Registro clínico real de fechamento de diastema anterior e reabilitação anatômica do sorriso com naturalidade.',
   },
 ];
 
@@ -211,7 +218,7 @@ function Hero() {
     if (heroSlides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const timer = window.setInterval(() => {
       setActive((index) => (index + 1) % heroSlides.length);
-    }, 3000);
+    }, 6000);
     return () => window.clearInterval(timer);
   }, [heroSlides]);
 
@@ -278,15 +285,15 @@ function About() {
           <p className="v4-kicker v4-kicker--dark">A clínica</p>
           <h2>Cuidado humano, decisões claras e atenção individual.</h2>
           <p className="v4-lead">A IL Odontologia e Estética combina saúde bucal, estética e atendimento humanizado com honestidade, respeito e atenção individual.</p>
-          <p>Cada paciente é recebido de forma única. A proposta é ouvir, orientar e construir um plano de tratamento claro e personalizado.</p>
+          <p>Cada paciente é recebido em consultórios preparados para acolher com conforto, biossegurança e tranquilidade. A proposta é ouvir, orientar e construir um plano de tratamento claro e personalizado.</p>
           <a className="v4-text-link v4-text-link--dark" href="#experiencia">Conhecer a experiência <Arrow /></a>
         </div>
 
         <figure className="v4-about__media" data-reveal>
-          <img src={assets.about} alt="Dra. Layla Beatriz, da IL Odontologia e Estética" loading="lazy" />
+          <img src={assets.hero} alt="Ambiente físico da IL Odontologia e Estética em Limoeiro do Norte" loading="lazy" />
           <figcaption>
-            <span>Dra. Layla Beatriz</span>
-            <strong>Atendimento próximo e estética com naturalidade.</strong>
+            <span>IL Odontologia e Estética</span>
+            <strong>Um espaço pensado para acolher com conforto, organização e cuidado.</strong>
           </figcaption>
         </figure>
       </div>
@@ -359,19 +366,26 @@ function BeforeAfter() {
             <p className="v4-kicker v4-kicker--dark">Antes & Depois</p>
             <h2>Transformações reais merecem espaço para serem vistas.</h2>
           </div>
-          <p>Os registros atuais já entram como uma vitrine editorial. Quando recebermos os arquivos separados de antes e depois, esta área está preparada para evoluir para um comparador arrastável.</p>
+          <p>Registros clínicos reais acompanhados na IL Odontologia e Estética. Cada planejamento respeita a anatomia e busca harmonia, naturalidade e saúde funcional.</p>
         </div>
 
         <div className="v4-results__stage" data-reveal>
-          <figure key={item.image}>
-            <img src={item.image} alt={`${item.title} — registro clínico da IL Odontologia e Estética`} loading="lazy" />
+          <figure key={item.title}>
+            <img
+              src={item.image}
+              alt={`${item.title} — ${item.category} na IL Odontologia e Estética`}
+              loading="eager"
+            />
           </figure>
           <div className="v4-results__copy">
-            <span>{String(active + 1).padStart(2, '0')} / {String(beforeAfter.length).padStart(2, '0')}</span>
+            <div className="v4-results__meta">
+              <span className="v4-results__counter">{String(active + 1).padStart(2, '0')} / {String(beforeAfter.length).padStart(2, '0')}</span>
+              <span className="v4-results__badge">{item.category}</span>
+            </div>
             <h3>{item.title}</h3>
             <p>{item.caption}</p>
-            <small>Resultados variam conforme cada caso e avaliação profissional.</small>
-            <Button href={wa('Olá! Vi a seção de Antes & Depois no site da IL e gostaria de agendar uma avaliação.')} external>
+            <small>Resultados variam conforme a avaliação clínica individual e condições de cada paciente.</small>
+            <Button href={wa(`Olá! Vi o caso de ${item.title} (${item.category}) no site da IL e gostaria de agendar uma avaliação.`)} external>
               Avaliar meu caso
             </Button>
           </div>
@@ -384,8 +398,11 @@ function BeforeAfter() {
               key={caseItem.title}
               className={active === index ? 'is-active' : ''}
               onClick={() => setActive(index)}
+              aria-label={`Visualizar ${caseItem.title}`}
             >
-              {String(index + 1).padStart(2, '0')} {caseItem.title}
+              <span className="v4-results__nav-idx">{String(index + 1).padStart(2, '0')}</span>
+              <span className="v4-results__nav-title">{caseItem.title}</span>
+              <span className="v4-results__nav-cat">· {caseItem.category}</span>
             </button>
           ))}
         </div>
