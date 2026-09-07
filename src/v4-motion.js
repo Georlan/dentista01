@@ -66,7 +66,7 @@ export function initV4Motion() {
   sections.forEach((section) => section.classList.add('v4-motion-section'));
 
   if (reduced) {
-    revealTargets.forEach((target) => target.classList.add('is-motion-visible'));
+    [...new Set([...revealTargets, ...mediaTargets])].forEach((target) => target.classList.add('is-motion-visible'));
     document.querySelectorAll('.v4-motion-stagger').forEach((target) => target.classList.add('is-motion-visible'));
     sections.forEach((section) => section.classList.add('is-motion-visible'));
     progress.remove();
@@ -84,7 +84,7 @@ export function initV4Motion() {
     { threshold: 0.13, rootMargin: '0px 0px -9% 0px' },
   );
 
-  revealTargets.forEach((target) => observer.observe(target));
+  [...new Set([...revealTargets, ...mediaTargets])].forEach((target) => observer.observe(target));
   document.querySelectorAll('.v4-motion-stagger').forEach((target) => observer.observe(target));
   sections.forEach((section) => observer.observe(section));
 
