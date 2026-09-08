@@ -1,44 +1,45 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { assets, clinic, specialists, testimonials } from './data/siteData';
 import transformacao02 from './assets/cases/transformacao02.jpg';
+import transformacao03 from './assets/cases/transformacao03.jpg';
 
 const primaryCare = [
   {
     name: 'Odontologia estética',
-    short: 'Estética com naturalidade',
-    description: 'Planejamento individualizado para harmonizar sorriso, saúde bucal e proporções faciais com facetas, lentes e clareamento.',
-    image: assets.gallery[1],
+    short: 'Harmonização & Lentes',
+    description: 'Planejamento digital individualizado para valorizar a luminosidade e as proporções do sorriso com lentes cerâmicas, facetas anatômicas e clareamento guiado.',
+    image: assets.gallery[0],
   },
   {
     name: 'Implante dentário',
-    short: 'Função e estabilidade',
-    description: 'Reabilitação cirúrgica e protética planejada para recuperar função mastigatória, segurança e estabilidade.',
+    short: 'Função & Estabilidade',
+    description: 'Reabilitação cirúrgica e protética minuciosa para restabelecer a capacidade mastigatória plena, harmonia facial e a segurança definitiva ao sorrir.',
     image: assets.hero,
   },
   {
-    name: 'Ortodontia',
-    short: 'Alinhamento e oclusão',
-    description: 'Correção de mordida, alinhamento funcional e harmonia do arco dental com abordagens modernas, discretas e confortáveis.',
+    name: 'Ortodontia & Alinhadores',
+    short: 'Alinhamento & Oclusão',
+    description: 'Correção de mordida e alinhamento tridimensional com aparelhos autoligados, estéticos e alinhadores transparentes modernos e confortáveis.',
     image: assets.gallery[2],
   },
 ];
 
 const secondaryCare = [
   {
-    name: 'Limpeza dental',
-    description: 'Profilaxia e prevenção contínua para manutenção da saúde periodontal e bem-estar bucal.',
+    name: 'Limpeza & Profilaxia Avançada',
+    description: 'Acompanhamento preventivo com remoção ultrassônica de tártaro e placa para proteção gengival e saúde bucal a longo prazo.',
   },
   {
-    name: 'Tratamento de canal',
-    description: 'Tratamento endodôntico para preservar a estrutura dental e evitar dores e complicações futuras.',
+    name: 'Tratamento de Canal (Endodontia)',
+    description: 'Tratamento biológico e preciso para preservar o dente natural, controlar desconfortos e evitar complicações futuras.',
   },
   {
-    name: 'Odontopediatria',
-    description: 'Acolhimento afetivo e cuidado preventivo desde a infância para uma experiência positiva e tranquila.',
+    name: 'Odontopediatria Acolhedora',
+    description: 'Cuidado preventivo e afetuoso desde a infância, criando uma relação positiva, tranquila e sem medo com o consultório.',
   },
   {
-    name: 'Extração dentária',
-    description: 'Conduta segura e planejamento individualizado quando a remoção do dente é clinicamente indicada.',
+    name: 'Cirurgia & Extração Cuidadosa',
+    description: 'Procedimentos minimamente invasivos com rigor cirúrgico, anestesia precisa e foco em cicatrização confortável.',
   },
 ];
 
@@ -52,11 +53,11 @@ const agreements = [
 const faq = [
   {
     q: 'Como faço para agendar uma consulta?',
-    a: 'Você pode iniciar o agendamento pelo WhatsApp no número (88) 99984-5437 e combinar o melhor dia e horário diretamente com a recepção.',
+    a: 'Você pode iniciar o agendamento pelo WhatsApp no número (88) 99984-5437 e escolher o melhor dia e horário diretamente com nossa recepção.',
   },
   {
-    q: 'Quais tratamentos a clínica oferece?',
-    a: 'A clínica oferece odontologia estética, implantes dentários, ortodontia (aparelhos), limpeza dental, tratamento de canal, odontopediatria e extração dentária.',
+    q: 'Quais áreas a equipe da IL Odontologia atende?',
+    a: 'Nossa equipe conta com especialistas em Odontologia Estética, Implantes e Prótese, Ortodontia e Alinhadores, além de Clínica Geral e Prevenção voltada também para pacientes com medo de dentista.',
   },
   {
     q: 'Quais convênios são atendidos?',
@@ -74,16 +75,34 @@ const faq = [
 
 const beforeAfter = [
   {
+    id: 'diastema',
     title: 'Transformação 01',
-    category: 'Harmonização do Sorriso & Lentes',
-    image: assets.gallery[1],
-    caption: 'Registro clínico de harmonização estética e proporção do sorriso realizado na IL Odontologia e Estética.',
-  },
-  {
-    title: 'Transformação 02',
     category: 'Fechamento de Diastema & Reanatomização',
     image: transformacao02,
+    badge: 'Caso Clínico Real',
+    diagnosis: 'Espaçamento anterior (diastema) e desproporção anatômica.',
+    approach: 'Planejamento de fechamento com cerâmica de alta durabilidade e respeito aos tecidos gengivais.',
     caption: 'Registro clínico real de fechamento de diastema anterior e reabilitação anatômica do sorriso com naturalidade.',
+  },
+  {
+    id: 'lentes',
+    title: 'Transformação 02',
+    category: 'Harmonização do Sorriso & Lentes',
+    image: assets.gallery[0],
+    badge: 'Caso Clínico Real',
+    diagnosis: 'Desgaste estético superficial e assimetria na linha do sorriso.',
+    approach: 'Facetas cerâmicas ultrafinas com iluminação de cor personalizada e alinhamento do arco.',
+    caption: 'Planejamento digital com refinamento de proporções, iluminação de cor e acabamento em harmonia com os traços faciais.',
+  },
+  {
+    id: 'reabilitacao',
+    title: 'Transformação 03',
+    category: 'Reabilitação Estética & Funcional',
+    image: transformacao03,
+    badge: 'Caso Clínico Real',
+    diagnosis: 'Perda de suporte dental anterior e alteração da curva estética.',
+    approach: 'Reabilitação integrada restabelecendo ponto de contato, função mastigatória e harmonia do sorriso.',
+    caption: 'Registro clínico de reabilitação estético-funcional anterior com restabelecimento da oclusão e naturalidade.',
   },
 ];
 
@@ -111,11 +130,11 @@ function MenuIcon({ open }) {
   );
 }
 
-function Button({ href, children, outline = false, external = false }) {
+function Button({ href, children, outline = false, external = false, className = '' }) {
   return (
     <a
       href={href}
-      className={`v4-button ${outline ? 'is-outline' : ''}`}
+      className={`v4-button ${outline ? 'is-outline' : ''} ${className}`}
       {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
     >
       <span>{children}</span>
@@ -141,7 +160,7 @@ function useReveal() {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.1, rootMargin: '0px 0px -6% 0px' },
     );
 
     targets.forEach((target) => observer.observe(target));
@@ -151,11 +170,12 @@ function useReveal() {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const nav = [
     ['A clínica', '#clinica'],
     ['Tratamentos', '#tratamentos'],
     ['Antes & Depois', '#resultados'],
-    ['Especialistas', '#especialistas'],
+    ['Corpo Clínico', '#especialistas'],
     ['Contato', '#contato'],
   ];
 
@@ -164,8 +184,16 @@ function Header() {
     return () => document.body.classList.remove('v4-menu-open');
   }, [open]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="v4-header">
+    <header className={`v4-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="v4-shell v4-header__inner">
         <a href="#inicio" className="v4-brand" aria-label="IL Odontologia e Estética — início">
           <img src={assets.logo} alt="IL Odontologia e Estética" />
@@ -176,7 +204,8 @@ function Header() {
         </nav>
 
         <a className="v4-header__cta" href={clinic.whatsapp} target="_blank" rel="noreferrer">
-          Agendar consulta <Arrow />
+          <span>Agendar consulta</span>
+          <Arrow />
         </a>
 
         <button
@@ -207,68 +236,124 @@ function Header() {
 function Hero() {
   const heroSlides = useMemo(() => [
     {
+      id: 'layla',
+      tag: 'DIRETORA CLÍNICA · ESTÉTICA DENTAL',
       name: 'Dra. Layla Beatriz',
       specialty: 'Cirurgiã-dentista clínica geral, pós-graduada em estética dental.',
+      quote: 'Planejamento estético individualizado para valorizar a harmonia natural de cada sorriso.',
       image: assets.about,
+      isPlaceholder: false,
     },
-    specialists[1],
-    specialists[2],
+    {
+      id: 'hugo',
+      tag: 'REABILITAÇÃO ORAL & IMPLANTES',
+      name: 'Dr. Hugo Mota',
+      specialty: 'Especialista em implantes e prótese dentária.',
+      quote: 'Precisão cirúrgica e rigor técnico para restabelecer conforto mastigatório e estabilidade duradoura.',
+      image: specialists[1].image,
+      isPlaceholder: false,
+    },
+    {
+      id: 'hanna',
+      tag: 'ORTODONTIA CONTEMPORÂNEA',
+      name: 'Dra. Hanna Isa',
+      specialty: 'Especialista em ortodontia (aparelhos dentários e alinhadores).',
+      quote: 'Alinhamento oclusal e funcional com técnicas modernas, discretas e confortáveis.',
+      image: specialists[2].image,
+      isPlaceholder: false,
+    },
+    {
+      id: 'ismael',
+      tag: 'SAÚDE BUCAL & ATENDIMENTO HUMANIZADO',
+      name: 'Dr. Ismael Lima',
+      specialty: 'Cirurgião-dentista com atuação em clínica geral, prevenção e atendimento humanizado. Mestrando em Saúde.',
+      quote: 'Odontologia preventiva e acolhedora com comunicação voltada especialmente para quem sente receio ou ansiedade.',
+      image: specialists[3].image,
+      isPlaceholder: true,
+    },
   ], []);
 
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const person = heroSlides[active];
 
   useEffect(() => {
     heroSlides.forEach((slide) => {
-      const image = new Image();
-      image.src = slide.image;
+      if (!slide.isPlaceholder) {
+        const img = new Image();
+        img.src = slide.image;
+      }
     });
 
-    if (heroSlides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const timer = window.setInterval(() => {
       setActive((index) => (index + 1) % heroSlides.length);
-    }, 6000);
+    }, 5500);
     return () => window.clearInterval(timer);
-  }, [heroSlides]);
+  }, [heroSlides, paused]);
 
   return (
-    <section className="v4-hero" id="inicio">
-      <div className="v4-hero__media">
-        <img key={person.image} src={person.image} alt={`Foto de ${person.name}`} className="v4-hero__photo" />
-        <div className="v4-hero__media-shade" aria-hidden="true" />
-        <div className="v4-hero__person">
-          <span>Corpo clínico</span>
-          <strong>{person.name}</strong>
-          <p>{person.specialty}</p>
+    <section
+      className="v4-hero"
+      id="inicio"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <div className="v4-hero__media-wrapper">
+        <div key={person.id} className="v4-hero__slide is-active">
+          <img
+            src={person.image}
+            alt={`Foto de ${person.name}`}
+            className={`v4-hero__photo ${person.isPlaceholder ? 'is-placeholder-graphic' : ''}`}
+          />
+          <div className="v4-hero__media-shade" aria-hidden="true" />
+          <div className="v4-hero__person">
+            <span className="v4-hero__person-tag">{person.tag}</span>
+            <strong>{person.name}</strong>
+            <p>{person.specialty}</p>
+          </div>
         </div>
       </div>
 
       <div className="v4-shell v4-hero__grid">
         <div className="v4-hero__copy" data-reveal>
-          <p className="v4-kicker">Limoeiro do Norte · CE</p>
-          <h1>Saúde e estética, em equilíbrio.</h1>
-          <p className="v4-hero__lead">Odontologia com atendimento próximo, planejamento individual e cuidado em cada detalhe.</p>
+          <div className="v4-hero__badge">
+            <span className="v4-badge-dot" />
+            Limoeiro do Norte · CE · Castelo
+          </div>
+          <h1>Saúde e estética, em harmonia absoluta.</h1>
+          <p className="v4-hero__lead">
+            Odontologia multidisciplinar com corpo clínico de 4 frentes, atendimento acolhedor e planejamento individualizado em cada detalhe.
+          </p>
           <div className="v4-actions">
-            <Button href={clinic.whatsapp} external>Agendar consulta</Button>
+            <Button href={clinic.whatsapp} external>Agendar pelo WhatsApp</Button>
             <a className="v4-text-link" href="#tratamentos">Conhecer tratamentos <Arrow /></a>
           </div>
         </div>
       </div>
 
       <div className="v4-hero__selector" aria-label="Profissional em destaque">
-        <div className="v4-shell">
-          {heroSlides.map((slide, index) => (
-            <button
-              type="button"
-              key={slide.name}
-              className={active === index ? 'is-active' : ''}
-              onClick={() => setActive(index)}
-              aria-label={`Mostrar ${slide.name}`}
-            >
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              {slide.name.replace('Dra. ', '').replace('Dr. ', '')}
-            </button>
-          ))}
+        <div className="v4-shell v4-hero__selector-shell">
+          <span className="v4-hero__selector-label">Corpo Clínico:</span>
+          <div className="v4-hero__selector-tabs">
+            {heroSlides.map((slide, index) => (
+              <button
+                type="button"
+                key={slide.id}
+                className={active === index ? 'is-active' : ''}
+                onClick={() => setActive(index)}
+                aria-label={`Mostrar ${slide.name}`}
+              >
+                <div className="v4-hero__tab-bar" aria-hidden="true">
+                  <div className={`v4-hero__tab-fill ${active === index && !paused ? 'is-animating' : ''}`} />
+                </div>
+                <span className="v4-hero__tab-num">{String(index + 1).padStart(2, '0')}</span>
+                <span className="v4-hero__tab-name">{slide.name.replace('Dra. ', '').replace('Dr. ', '')}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -277,9 +362,9 @@ function Hero() {
 
 function TrustStrip() {
   const items = [
-    'Atendimento humanizado e próximo',
-    '1.000+ pacientes atendidos',
-    'Corpo clínico especializado',
+    'Atendimento humanizado e sem pressa',
+    'Corpo clínico com 4 áreas integradas',
+    'Ambiente moderno e biossegurança',
     'Castelo · Limoeiro do Norte - CE',
   ];
   return (
@@ -297,17 +382,47 @@ function About() {
       <div className="v4-shell v4-about__grid">
         <div className="v4-about__copy" data-reveal>
           <p className="v4-kicker v4-kicker--dark">A clínica</p>
-          <h2>Cuidado humano, decisões claras e atenção individual.</h2>
-          <p className="v4-lead">A IL Odontologia e Estética combina saúde bucal, estética e atendimento humanizado com honestidade, respeito e atenção individual.</p>
-          <p>Cada paciente é recebido em consultórios preparados para acolher com conforto, biossegurança e tranquilidade. A proposta é ouvir, orientar e construir um plano de tratamento claro e personalizado.</p>
-          <a className="v4-text-link v4-text-link--dark" href="#experiencia">Conhecer a experiência <Arrow /></a>
+          <h2>Ambiente contemporâneo, biossegurança e atenção individual.</h2>
+          <p className="v4-lead">
+            A IL Odontologia e Estética foi projetada para desmistificar a experiência odontológica, transformando cada consulta em um momento de clareza, respeito e tranquilidade.
+          </p>
+          <div className="v4-about__pillars">
+            <div className="v4-about__pillar">
+              <span className="v4-pillar-num">01</span>
+              <div>
+                <strong>Biossegurança e Rigor</strong>
+                <p>Esterilização hospitalar com rastreabilidade instrumental completa e protocolos estritos.</p>
+              </div>
+            </div>
+            <div className="v4-about__pillar">
+              <span className="v4-pillar-num">02</span>
+              <div>
+                <strong>Conforto e Acolhimento</strong>
+                <p>Consultórios climatizados, acústica suave e iluminação pensada para acalmar a ansiedade.</p>
+              </div>
+            </div>
+            <div className="v4-about__pillar">
+              <span className="v4-pillar-num">03</span>
+              <div>
+                <strong>Diagnóstico Transparente</strong>
+                <p>Planejamento digital claro: você compreende cada etapa e decisão antes de iniciar o tratamento.</p>
+              </div>
+            </div>
+          </div>
+          <div className="v4-about__cta-wrap">
+            <Button href={clinic.whatsapp} external>Conhecer nosso espaço</Button>
+          </div>
         </div>
 
         <figure className="v4-about__media" data-reveal>
-          <img src={assets.hero} alt="Ambiente físico da IL Odontologia e Estética em Limoeiro do Norte" loading="lazy" />
+          <img
+            src={assets.hero}
+            alt="Consultório moderno da IL Odontologia e Estética em Limoeiro do Norte"
+            loading="lazy"
+          />
           <figcaption>
-            <span>IL Odontologia e Estética</span>
-            <strong>Um espaço pensado para acolher com conforto, organização e cuidado.</strong>
+            <span>IL Odontologia e Estética · Castelo</span>
+            <strong>Consultórios planejados para aliar precisão técnica e acolhimento humano.</strong>
           </figcaption>
         </figure>
       </div>
@@ -323,8 +438,8 @@ function TreatmentPanels() {
       <div className="v4-shell">
         <div className="v4-section-head" data-reveal>
           <p className="v4-kicker">Tratamentos</p>
-          <h2>Três caminhos, uma mesma forma de cuidar.</h2>
-          <p>Uma apresentação mais visual das principais frentes de atendimento, com acesso direto ao WhatsApp.</p>
+          <h2>Três frentes de excelência, um mesmo rigor no cuidado.</h2>
+          <p>Conheça as principais especialidades da IL Odontologia com planejamento individualizado.</p>
         </div>
       </div>
 
@@ -339,12 +454,19 @@ function TreatmentPanels() {
             <img src={item.image} alt="" loading="lazy" aria-hidden="true" />
             <div className="v4-care-card__shade" aria-hidden="true" />
             <div className="v4-care-card__content">
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <p>{item.short}</p>
+              <div className="v4-care-card__top">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p className="v4-care-card__tag">{item.short}</p>
+              </div>
               <h3>{item.name}</h3>
               <div className="v4-care-card__reveal">
                 <p>{item.description}</p>
-                <a href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)} target="_blank" rel="noreferrer">
+                <a
+                  href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="v4-care-card__link"
+                >
                   Agendar avaliação <Arrow />
                 </a>
               </div>
@@ -354,15 +476,21 @@ function TreatmentPanels() {
       </div>
 
       <div className="v4-shell v4-secondary-care" data-reveal>
-        {secondaryCare.map((item) => (
-          <article key={item.name}>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <a href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)} target="_blank" rel="noreferrer">
-              Saber mais <Arrow />
-            </a>
-          </article>
-        ))}
+        <div className="v4-secondary-care__header">
+          <span className="v4-secondary-care__kicker">Outros atendimentos</span>
+          <h4>Cuidado integral para a sua saúde bucal</h4>
+        </div>
+        <div className="v4-secondary-care__grid">
+          {secondaryCare.map((item) => (
+            <article key={item.name} className="v4-secondary-care__card">
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+              <a href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)} target="_blank" rel="noreferrer">
+                Saber mais <Arrow />
+              </a>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -378,9 +506,11 @@ function BeforeAfter() {
         <div className="v4-results__head" data-reveal>
           <div>
             <p className="v4-kicker v4-kicker--dark">Antes & Depois</p>
-            <h2>Transformações reais merecem espaço para serem vistas.</h2>
+            <h2>Transformações reais com harmonia, saúde e precisão.</h2>
           </div>
-          <p>Registros clínicos reais acompanhados na IL Odontologia e Estética. Cada planejamento respeita a anatomia e busca harmonia, naturalidade e saúde funcional.</p>
+          <p>
+            Registros clínicos reais conduzidos na IL Odontologia e Estética. Cada planejamento respeita a biologia e a anatomia facial, buscando harmonia natural e durabilidade.
+          </p>
         </div>
 
         <div className="v4-results__stage" data-reveal>
@@ -394,14 +524,32 @@ function BeforeAfter() {
           <div className="v4-results__copy">
             <div className="v4-results__meta">
               <span className="v4-results__counter">{String(active + 1).padStart(2, '0')} / {String(beforeAfter.length).padStart(2, '0')}</span>
-              <span className="v4-results__badge">{item.category}</span>
+              <span className="v4-results__badge">{item.badge}</span>
             </div>
+            <p className="v4-results__cat">{item.category}</p>
             <h3>{item.title}</h3>
-            <p>{item.caption}</p>
-            <small>Resultados variam conforme a avaliação clínica individual e condições de cada paciente.</small>
-            <Button href={wa(`Olá! Vi o caso de ${item.title} (${item.category}) no site da IL e gostaria de agendar uma avaliação.`)} external>
-              Avaliar meu caso
-            </Button>
+            
+            <div className="v4-results__sheet">
+              <div className="v4-sheet-item">
+                <span className="v4-sheet-label">Diagnóstico Clínico</span>
+                <p>{item.diagnosis}</p>
+              </div>
+              <div className="v4-sheet-item">
+                <span className="v4-sheet-label">Abordagem & Conduta</span>
+                <p>{item.approach}</p>
+              </div>
+            </div>
+
+            <p className="v4-results__caption">{item.caption}</p>
+            <small className="v4-results__disclaimer">
+              *Resultados variam conforme a avaliação clínica individual, estrutura óssea e saúde periodontal de cada paciente.
+            </small>
+
+            <div className="v4-results__action">
+              <Button href={wa(`Olá! Vi o caso de ${item.title} (${item.category}) no site da IL e gostaria de agendar uma avaliação.`)} external>
+                Avaliar meu caso
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -415,8 +563,10 @@ function BeforeAfter() {
               aria-label={`Visualizar ${caseItem.title}`}
             >
               <span className="v4-results__nav-idx">{String(index + 1).padStart(2, '0')}</span>
-              <span className="v4-results__nav-title">{caseItem.title}</span>
-              <span className="v4-results__nav-cat">· {caseItem.category}</span>
+              <div className="v4-results__nav-text">
+                <span className="v4-results__nav-title">{caseItem.title}</span>
+                <span className="v4-results__nav-cat">{caseItem.category}</span>
+              </div>
             </button>
           ))}
         </div>
@@ -426,25 +576,120 @@ function BeforeAfter() {
 }
 
 function Specialists() {
+  const leadSpecialist = specialists[0];
+  const otherSpecialists = specialists.slice(1);
+
   return (
     <section className="v4-section v4-specialists" id="especialistas">
       <div className="v4-shell">
         <div className="v4-section-head v4-section-head--dark" data-reveal>
-          <p className="v4-kicker">Corpo clínico</p>
-          <h2>Profissionais que unem técnica e proximidade.</h2>
-          <p>Conheça quem estará ao seu lado durante cada etapa do tratamento.</p>
+          <p className="v4-kicker">Corpo Clínico Integrado</p>
+          <h2>Quatro olhares especializados, uma mesma filosofia de cuidado.</h2>
+          <p>Conheça a equipe multidisciplinar que conduz cada etapa do seu tratamento com rigor e proximidade.</p>
         </div>
 
-        <div className="v4-specialists__track" data-reveal>
-          {specialists.map((person) => (
-            <article className="v4-person" key={person.name}>
-              <div className="v4-person__media">
-                <img src={person.image} alt={`Foto de ${person.name}`} loading="lazy" />
+        {/* Editorial Magazine Layout */}
+        <div className="v4-specialists__editorial" data-reveal>
+          {/* Dra. Layla Beatriz - Lead Specialist Feature */}
+          <article className="v4-lead-specialist">
+            <div className="v4-lead-specialist__media">
+              <img src={leadSpecialist.image} alt={`Foto de ${leadSpecialist.name}`} loading="lazy" />
+              <div className="v4-lead-specialist__media-badge">
+                <span>{leadSpecialist.roleTag}</span>
               </div>
-              <div className="v4-person__body">
+            </div>
+            <div className="v4-lead-specialist__body">
+              <span className="v4-specialist-num">01 · DIREÇÃO CLÍNICA</span>
+              <h3>{leadSpecialist.name}</h3>
+              <p className="v4-specialist-sub">{leadSpecialist.specialty}</p>
+              
+              <blockquote className="v4-specialist-quote">
+                “Acreditamos em uma odontologia que valoriza a singularidade e a beleza natural de cada pessoa, unindo precisão estética e saúde funcional duradoura.”
+              </blockquote>
+
+              <div className="v4-specialist-highlights">
+                <span>Facetas cerâmicas e lentes de contato</span>
+                <span>Planejamento estético digital</span>
+                <span>Clareamento dental guiado</span>
+              </div>
+
+              <div className="v4-lead-specialist__cta">
+                <Button href={wa(`Olá! Gostaria de agendar uma consulta com a ${leadSpecialist.name}.`)} external>
+                  Agendar com Dra. Layla
+                </Button>
+              </div>
+            </div>
+          </article>
+
+          {/* Trio Grid: Dr. Hugo, Dra. Hanna, Dr. Ismael */}
+          <div className="v4-trio-specialists">
+            {otherSpecialists.map((person, idx) => (
+              <article
+                key={person.id}
+                className={`v4-specialist-card ${person.photoPending ? 'is-photo-pending' : ''}`}
+              >
+                <div className="v4-specialist-card__media">
+                  <img
+                    src={person.image}
+                    alt={`Foto de ${person.name}`}
+                    loading="lazy"
+                    className={person.photoPending ? 'is-placeholder-graphic' : ''}
+                  />
+                  <div className="v4-specialist-card__badge">
+                    <span>{person.roleTag}</span>
+                  </div>
+                </div>
+
+                <div className="v4-specialist-card__body">
+                  <div className="v4-specialist-card__top">
+                    <span className="v4-specialist-num">0{idx + 2}</span>
+                    <h3>{person.name}</h3>
+                  </div>
+
+                  <p className="v4-specialist-card__spec">{person.specialty}</p>
+                  <p className="v4-specialist-card__diff">{person.differential}</p>
+
+                  <div className="v4-specialist-card__footer">
+                    <a
+                      href={wa(`Olá! Gostaria de agendar uma consulta e saber mais sobre o atendimento do ${person.name}.`)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="v4-specialist-card__link"
+                    >
+                      <span>Agendar consulta</span>
+                      <Arrow />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Horizontal Carousel */}
+        <div className="v4-specialists__mobile-track" data-reveal>
+          {specialists.map((person, index) => (
+            <article className="v4-mobile-person" key={person.id}>
+              <div className="v4-mobile-person__media">
+                <img
+                  src={person.image}
+                  alt={`Foto de ${person.name}`}
+                  loading="lazy"
+                  className={person.photoPending ? 'is-placeholder-graphic' : ''}
+                />
+                <span className="v4-mobile-person__tag">{person.roleTag}</span>
+              </div>
+              <div className="v4-mobile-person__body">
+                <span className="v4-specialist-num">0{index + 1}</span>
                 <h3>{person.name}</h3>
-                <p>{person.specialty}</p>
-                <a href={wa(`Olá! Gostaria de agendar uma consulta e saber mais sobre o atendimento de ${person.name}.`)} target="_blank" rel="noreferrer">
+                <p className="v4-mobile-person__spec">{person.specialty}</p>
+                <p className="v4-mobile-person__diff">{person.differential}</p>
+                <a
+                  href={wa(`Olá! Gostaria de agendar uma consulta com ${person.name}.`)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="v4-mobile-person__cta"
+                >
                   Agendar consulta <Arrow />
                 </a>
               </div>
@@ -458,10 +703,10 @@ function Specialists() {
 
 function Experience() {
   const items = [
-    ['Escuta', 'Entender suas expectativas antes de indicar qualquer caminho.'],
-    ['Planejamento', 'Explicar cada etapa com clareza e construir uma jornada individual.'],
-    ['Conforto', 'Criar um ambiente acolhedor para tornar a experiência mais tranquila.'],
-    ['Acompanhamento', 'Manter proximidade e orientação ao longo do tratamento.'],
+    ['01 · Escuta Atenta', 'Compreendemos suas expectativas, histórico de saúde e eventuais receios antes de qualquer intervenção.'],
+    ['02 · Planejamento Claro', 'Explicamos cada etapa, opções de materiais e prazos de forma transparente, didática e sem termos complicados.'],
+    ['03 · Conforto e Biossegurança', 'Atendimento com isolamento acústico, anestesia precisa e rigor hospitalar de esterilização.'],
+    ['04 · Acompanhamento Contínuo', 'Suporte pós-procedimento próximo e monitoramento preventivo para preservar seu sorriso saudável a longo prazo.'],
   ];
 
   return (
@@ -469,17 +714,19 @@ function Experience() {
       <div className="v4-shell v4-experience__grid">
         <div className="v4-experience__copy" data-reveal>
           <p className="v4-kicker">Experiência do paciente</p>
-          <h2>Sentir-se bem cuidado também faz parte do tratamento.</h2>
-          <p>A experiência dentro da clínica foi pensada para ser simples, próxima e organizada — da conversa inicial ao acompanhamento profissional.</p>
+          <h2>Sentir-se bem cuidado faz parte de todo o processo.</h2>
+          <p className="v4-lead">
+            Nossa clínica foi planejada para que a sua visita seja leve, segura e acolhedora — da recepção ao acompanhamento contínuo.
+          </p>
         </div>
 
         <figure className="v4-experience__media" data-reveal>
-          <img src={assets.hero} alt="Ambiente da IL Odontologia e Estética" loading="lazy" />
+          <img src={assets.hero} alt="Consultório da IL Odontologia e Estética" loading="lazy" />
         </figure>
 
         <div className="v4-experience__items" data-reveal>
           {items.map(([title, copy]) => (
-            <div key={title}>
+            <div key={title} className="v4-experience__item">
               <strong>{title}</strong>
               <p>{copy}</p>
             </div>
@@ -501,17 +748,20 @@ function Testimonials() {
       <div className="v4-shell v4-testimonials__grid">
         <div data-reveal>
           <p className="v4-kicker v4-kicker--dark">Depoimentos</p>
-          <h2>Confiança construída no atendimento.</h2>
+          <h2>A experiência contada por quem viveu nosso atendimento.</h2>
         </div>
 
         <blockquote data-reveal key={item.name}>
           <span className="v4-quote">“</span>
           <p>{item.quote}</p>
           <footer>
-            <strong>{item.name}</strong>
             <div>
-              <button type="button" onClick={prev}>← Anterior</button>
-              <button type="button" onClick={next}>Próximo →</button>
+              <strong>{item.name}</strong>
+              <span className="v4-testimonial-tag">{item.tag}</span>
+            </div>
+            <div className="v4-testimonial-arrows">
+              <button type="button" onClick={prev} aria-label="Depoimento anterior">←</button>
+              <button type="button" onClick={next} aria-label="Próximo depoimento">→</button>
             </div>
           </footer>
         </blockquote>
@@ -528,12 +778,12 @@ function Info() {
       <div className="v4-shell v4-info__grid">
         <div data-reveal>
           <p className="v4-kicker v4-kicker--dark">Convênios</p>
-          <h2>Atendimento também por convênio.</h2>
+          <h2>Atendimento particular e planos credenciados.</h2>
           <div className="v4-agreements">
             {agreements.map((item) => (
               <div key={item.name}>
                 <strong>{item.name}</strong>
-                <span>{item.status}</span>
+                <span className={item.status === 'Atendimento confirmado' ? 'is-confirmed' : ''}>{item.status}</span>
               </div>
             ))}
           </div>
@@ -567,12 +817,14 @@ function Contact() {
       <div className="v4-shell v4-contact__grid">
         <div className="v4-contact__copy" data-reveal>
           <p className="v4-kicker">Contato & Localização</p>
-          <h2>Pronto para cuidar do seu sorriso?</h2>
-          <p>Fale com a equipe da IL Odontologia e Estética e agende sua consulta.</p>
+          <h2>Pronto para cuidar do seu sorriso com nossa equipe?</h2>
+          <p className="v4-lead">Fale com a recepção da IL Odontologia e Estética e reserve seu horário.</p>
+          
           <div className="v4-actions">
             <Button href={clinic.whatsapp} external>Agendar pelo WhatsApp</Button>
-            <Button href={clinic.routeUrl} outline external>Abrir rota</Button>
+            <Button href={clinic.routeUrl} outline external>Abrir rota no Maps</Button>
           </div>
+
           <div className="v4-contact__facts">
             <div>
               <span>Telefone / WhatsApp</span>
@@ -587,13 +839,13 @@ function Contact() {
               <p>Rua Cândido Olímpio, 1920<br />Centro · Limoeiro do Norte - CE</p>
             </div>
             <div>
-              <span>Referência</span>
+              <span>Ponto de Referência</span>
               <p>{clinic.landmark}</p>
             </div>
-            <div>
-              <span>Horário</span>
+            <div className="v4-contact__hours-col">
+              <span>Horário de Funcionamento</span>
               <p>
-                Seg a Qui: 08h às 12h · 13h às 20h<br />
+                Segunda a Quinta: 08h às 12h · 13h às 20h<br />
                 Sexta-feira: 08h às 12h · 13h às 18h<br />
                 Sábado: 08h às 12h
               </p>
@@ -620,28 +872,29 @@ function Footer() {
     <footer className="v4-footer">
       <div className="v4-shell v4-footer__grid">
         <div>
-          <img src={assets.logo} alt="IL Odontologia e Estética" />
-          <p>Seu sorriso é nossa missão. Odontologia, estética e cuidado humano em Limoeiro do Norte - CE.</p>
+          <img src={assets.logo} alt="IL Odontologia e Estética" className="v4-footer__logo" />
+          <p>Seu sorriso em harmonia. Odontologia multidisciplinar, estética refinada e atendimento acolhedor em Limoeiro do Norte - CE.</p>
         </div>
         <div>
           <span>Navegação</span>
+          <a href="#inicio">Início</a>
           <a href="#clinica">A clínica</a>
           <a href="#tratamentos">Tratamentos</a>
           <a href="#resultados">Antes & Depois</a>
-          <a href="#especialistas">Especialistas</a>
+          <a href="#especialistas">Corpo Clínico</a>
           <a href="#contato">Contato</a>
         </div>
         <div>
-          <span>Contato</span>
+          <span>Atendimento</span>
           <a href={clinic.whatsapp} target="_blank" rel="noreferrer">WhatsApp: {clinic.phoneDisplay}</a>
           <a href={`tel:+${clinic.phoneRaw}`}>Telefone: {clinic.phoneDisplay}</a>
           <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
-          <a href={clinic.routeUrl} target="_blank" rel="noreferrer">Como chegar</a>
+          <a href={clinic.routeUrl} target="_blank" rel="noreferrer">Como chegar (Google Maps)</a>
         </div>
       </div>
       <div className="v4-shell v4-footer__bottom">
         <span>© {new Date().getFullYear()} IL Odontologia e Estética · Todos os direitos reservados</span>
-        <span>Limoeiro do Norte · CE</span>
+        <span>Limoeiro do Norte · Ceará</span>
       </div>
     </footer>
   );
@@ -650,8 +903,12 @@ function Footer() {
 function MobileDock() {
   return (
     <div className="v4-mobile-dock">
-      <a href={clinic.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
-      <a href={clinic.routeUrl} target="_blank" rel="noreferrer">Como chegar</a>
+      <a href={clinic.whatsapp} target="_blank" rel="noreferrer" className="v4-dock-btn is-primary">
+        <span>Agendar consulta</span>
+      </a>
+      <a href={clinic.routeUrl} target="_blank" rel="noreferrer" className="v4-dock-btn is-secondary">
+        <span>Como chegar</span>
+      </a>
     </div>
   );
 }
