@@ -2,44 +2,45 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { assets, clinic, specialists, testimonials } from './data/siteData';
 import transformacao02 from './assets/cases/transformacao02.jpg';
 import transformacao03 from './assets/cases/transformacao03.jpg';
+import { initV4Motion } from './v4-motion';
 
 const primaryCare = [
   {
     name: 'Odontologia estética',
     short: 'Harmonização & Lentes',
-    description: 'Planejamento digital individualizado para valorizar a luminosidade e as proporções do sorriso com lentes cerâmicas, facetas anatômicas e clareamento guiado.',
+    description: 'Avaliação e planejamento para cuidar da estética do sorriso com facetas, lentes e clareamento.',
     image: assets.gallery[0],
   },
   {
     name: 'Implante dentário',
     short: 'Função & Estabilidade',
-    description: 'Reabilitação cirúrgica e protética minuciosa para restabelecer a capacidade mastigatória plena, harmonia facial e a segurança definitiva ao sorrir.',
+    description: 'Avaliação de possibilidades de reabilitação com implantes e próteses, considerando a saúde e as necessidades de cada paciente.',
     image: assets.hero,
   },
   {
     name: 'Ortodontia & Alinhadores',
     short: 'Alinhamento & Oclusão',
-    description: 'Correção de mordida e alinhamento tridimensional com aparelhos autoligados, estéticos e alinhadores transparentes modernos e confortáveis.',
+    description: 'Avaliação do alinhamento dos dentes e da mordida, com planejamento de aparelhos e alinhadores conforme cada caso.',
     image: assets.gallery[2],
   },
 ];
 
 const secondaryCare = [
   {
-    name: 'Limpeza & Profilaxia Avançada',
-    description: 'Acompanhamento preventivo com remoção ultrassônica de tártaro e placa para proteção gengival e saúde bucal a longo prazo.',
+    name: 'Limpeza dental',
+    description: 'Limpeza profissional e acompanhamento preventivo para cuidar dos dentes e da gengiva.',
   },
   {
-    name: 'Tratamento de Canal (Endodontia)',
+    name: 'Tratamento de canal',
     description: 'Tratamento biológico e preciso para preservar o dente natural, controlar desconfortos e evitar complicações futuras.',
   },
   {
-    name: 'Odontopediatria Acolhedora',
+    name: 'Odontopediatria',
     description: 'Cuidado preventivo e afetuoso desde a infância, criando uma relação positiva, tranquila e sem medo com o consultório.',
   },
   {
-    name: 'Cirurgia & Extração Cuidadosa',
-    description: 'Procedimentos minimamente invasivos com rigor cirúrgico, anestesia precisa e foco em cicatrização confortável.',
+    name: 'Extração dentária',
+    description: 'Avaliação e planejamento individualizado quando a remoção de um dente é necessária.',
   },
 ];
 
@@ -74,36 +75,9 @@ const faq = [
 ];
 
 const beforeAfter = [
-  {
-    id: 'diastema',
-    title: 'Transformação 01',
-    category: 'Fechamento de Diastema & Reanatomização',
-    image: transformacao02,
-    badge: 'Caso Clínico Real',
-    diagnosis: 'Espaçamento anterior (diastema) e desproporção anatômica.',
-    approach: 'Planejamento de fechamento com cerâmica de alta durabilidade e respeito aos tecidos gengivais.',
-    caption: 'Registro clínico real de fechamento de diastema anterior e reabilitação anatômica do sorriso com naturalidade.',
-  },
-  {
-    id: 'lentes',
-    title: 'Transformação 02',
-    category: 'Harmonização do Sorriso & Lentes',
-    image: assets.gallery[0],
-    badge: 'Caso Clínico Real',
-    diagnosis: 'Desgaste estético superficial e assimetria na linha do sorriso.',
-    approach: 'Facetas cerâmicas ultrafinas com iluminação de cor personalizada e alinhamento do arco.',
-    caption: 'Planejamento digital com refinamento de proporções, iluminação de cor e acabamento em harmonia com os traços faciais.',
-  },
-  {
-    id: 'reabilitacao',
-    title: 'Transformação 03',
-    category: 'Reabilitação Estética & Funcional',
-    image: transformacao03,
-    badge: 'Caso Clínico Real',
-    diagnosis: 'Perda de suporte dental anterior e alteração da curva estética.',
-    approach: 'Reabilitação integrada restabelecendo ponto de contato, função mastigatória e harmonia do sorriso.',
-    caption: 'Registro clínico de reabilitação estético-funcional anterior com restabelecimento da oclusão e naturalidade.',
-  },
+  { id: 'caso-01', title: 'Transformação 01', image: transformacao02 },
+  { id: 'caso-02', title: 'Transformação 02', image: assets.gallery[0] },
+  { id: 'caso-03', title: 'Transformação 03', image: transformacao03 },
 ];
 
 function wa(message) {
@@ -219,7 +193,7 @@ function Header() {
         </button>
       </div>
 
-      <div className={`v4-menu ${open ? 'is-open' : ''}`}>
+      <div className={`v4-menu ${open ? 'is-open' : ''}`} inert={!open} onKeyDown={event => { if (event.key === 'Escape') setOpen(false); }}>
         <div className="v4-shell">
           <nav aria-label="Navegação mobile">
             {nav.map(([label, href]) => (
@@ -234,47 +208,13 @@ function Header() {
 }
 
 function Hero() {
-  const heroSlides = useMemo(() => [
-    {
-      id: 'layla',
-      tag: 'DIRETORA CLÍNICA · ESTÉTICA DENTAL',
-      name: 'Dra. Layla Beatriz',
-      specialty: 'Cirurgiã-dentista clínica geral, pós-graduada em estética dental.',
-      quote: 'Planejamento estético individualizado para valorizar a harmonia natural de cada sorriso.',
-      image: assets.about,
-      isPlaceholder: false,
-    },
-    {
-      id: 'hugo',
-      tag: 'REABILITAÇÃO ORAL & IMPLANTES',
-      name: 'Dr. Hugo Mota',
-      specialty: 'Especialista em implantes e prótese dentária.',
-      quote: 'Precisão cirúrgica e rigor técnico para restabelecer conforto mastigatório e estabilidade duradoura.',
-      image: specialists[1].image,
-      isPlaceholder: false,
-    },
-    {
-      id: 'hanna',
-      tag: 'ORTODONTIA CONTEMPORÂNEA',
-      name: 'Dra. Hanna Isa',
-      specialty: 'Especialista em ortodontia (aparelhos dentários e alinhadores).',
-      quote: 'Alinhamento oclusal e funcional com técnicas modernas, discretas e confortáveis.',
-      image: specialists[2].image,
-      isPlaceholder: false,
-    },
-    {
-      id: 'ismael',
-      tag: 'SAÚDE BUCAL & ATENDIMENTO HUMANIZADO',
-      name: 'Dr. Ismael Lima',
-      specialty: 'Cirurgião-dentista com atuação em clínica geral, prevenção e atendimento humanizado. Mestrando em Saúde.',
-      quote: 'Odontologia preventiva e acolhedora com comunicação voltada especialmente para quem sente receio ou ansiedade.',
-      image: specialists[3].image,
-      isPlaceholder: true,
-    },
-  ], []);
+  const heroSlides = useMemo(() => specialists.map(person => ({
+    ...person, tag: person.roleTag, isPlaceholder: false,
+  })), []);
 
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [manualPause, setManualPause] = useState(false);
   const person = heroSlides[active];
 
   useEffect(() => {
@@ -285,12 +225,12 @@ function Hero() {
       }
     });
 
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (paused || manualPause || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const timer = window.setInterval(() => {
       setActive((index) => (index + 1) % heroSlides.length);
     }, 5500);
     return () => window.clearInterval(timer);
-  }, [heroSlides, paused]);
+  }, [heroSlides, paused, manualPause]);
 
   return (
     <section
@@ -300,6 +240,8 @@ function Hero() {
       onMouseLeave={() => setPaused(false)}
       onTouchStart={() => setPaused(true)}
       onTouchEnd={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}
     >
       <div className="v4-hero__media-wrapper">
         <div key={person.id} className="v4-hero__slide is-active">
@@ -325,7 +267,7 @@ function Hero() {
           </div>
           <h1>Saúde e estética, em harmonia absoluta.</h1>
           <p className="v4-hero__lead">
-            Odontologia multidisciplinar com corpo clínico de 4 frentes, atendimento acolhedor e planejamento individualizado em cada detalhe.
+            Quatro profissionais, um cuidado integrado. Atendimento acolhedor e planejamento individualizado em cada detalhe.
           </p>
           <div className="v4-actions">
             <Button href={clinic.whatsapp} external>Agendar pelo WhatsApp</Button>
@@ -336,18 +278,20 @@ function Hero() {
 
       <div className="v4-hero__selector" aria-label="Profissional em destaque">
         <div className="v4-shell v4-hero__selector-shell">
-          <span className="v4-hero__selector-label">Corpo Clínico:</span>
+          <span className="v4-hero__selector-label">Nossa equipe</span>
+          <button className="v5-rotation-toggle" type="button" onClick={() => setManualPause(value => !value)} aria-label={manualPause ? 'Retomar apresentação da equipe' : 'Pausar apresentação da equipe'}>{manualPause ? 'Reproduzir' : 'Pausar'}</button>
           <div className="v4-hero__selector-tabs">
             {heroSlides.map((slide, index) => (
               <button
                 type="button"
                 key={slide.id}
                 className={active === index ? 'is-active' : ''}
-                onClick={() => setActive(index)}
+                onClick={() => { setActive(index); setManualPause(true); }}
+                aria-pressed={active === index}
                 aria-label={`Mostrar ${slide.name}`}
               >
                 <div className="v4-hero__tab-bar" aria-hidden="true">
-                  <div className={`v4-hero__tab-fill ${active === index && !paused ? 'is-animating' : ''}`} />
+                  <div className={`v4-hero__tab-fill ${active === index && !paused && !manualPause ? 'is-animating' : ''}`} />
                 </div>
                 <span className="v4-hero__tab-num">{String(index + 1).padStart(2, '0')}</span>
                 <span className="v4-hero__tab-name">{slide.name.replace('Dra. ', '').replace('Dr. ', '')}</span>
@@ -391,21 +335,21 @@ function About() {
               <span className="v4-pillar-num">01</span>
               <div>
                 <strong>Biossegurança e Rigor</strong>
-                <p>Esterilização hospitalar com rastreabilidade instrumental completa e protocolos estritos.</p>
+                <p>Atenção à higiene e aos cuidados com o ambiente de atendimento.</p>
               </div>
             </div>
             <div className="v4-about__pillar">
               <span className="v4-pillar-num">02</span>
               <div>
                 <strong>Conforto e Acolhimento</strong>
-                <p>Consultórios climatizados, acústica suave e iluminação pensada para acalmar a ansiedade.</p>
+                <p>Um espaço acolhedor para conversar sobre suas necessidades e receios.</p>
               </div>
             </div>
             <div className="v4-about__pillar">
               <span className="v4-pillar-num">03</span>
               <div>
                 <strong>Diagnóstico Transparente</strong>
-                <p>Planejamento digital claro: você compreende cada etapa e decisão antes de iniciar o tratamento.</p>
+                <p>Converse com a equipe sobre as opções de cuidado antes de iniciar o tratamento.</p>
               </div>
             </div>
           </div>
@@ -431,65 +375,37 @@ function About() {
 }
 
 function TreatmentPanels() {
-  const [active, setActive] = useState(0);
-
   return (
     <section className="v4-section v4-care" id="tratamentos">
       <div className="v4-shell">
         <div className="v4-section-head" data-reveal>
           <p className="v4-kicker">Tratamentos</p>
-          <h2>Três frentes de excelência, um mesmo rigor no cuidado.</h2>
-          <p>Conheça as principais especialidades da IL Odontologia com planejamento individualizado.</p>
+          <h2>Seu sorriso, cuidado em cada detalhe.</h2>
+          <p>Conheça as áreas de atendimento e converse com a equipe sobre o seu caso.</p>
         </div>
-      </div>
-
-      <div className="v4-care__panels" data-reveal>
-        {primaryCare.map((item, index) => (
-          <article
-            className={`v4-care-card ${active === index ? 'is-active' : ''}`}
-            key={item.name}
-            onMouseEnter={() => setActive(index)}
-            onFocus={() => setActive(index)}
-          >
-            <img src={item.image} alt="" loading="lazy" aria-hidden="true" />
-            <div className="v4-care-card__shade" aria-hidden="true" />
-            <div className="v4-care-card__content">
-              <div className="v4-care-card__top">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <p className="v4-care-card__tag">{item.short}</p>
-              </div>
-              <h3>{item.name}</h3>
-              <div className="v4-care-card__reveal">
+        <div className="v5-care-grid">
+          {primaryCare.map((item, index) => (
+            <article className="v5-care-card" key={item.name} data-reveal>
+              <div className="v5-care-media"><img src={item.image} alt="" loading="lazy" /></div>
+              <div className="v5-care-body">
+                <span className="v5-index">0{index + 1} / {item.short}</span>
+                <h3>{item.name}</h3>
                 <p>{item.description}</p>
-                <a
-                  href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="v4-care-card__link"
-                >
-                  Agendar avaliação <Arrow />
-                </a>
+                <a href={wa(`Olá! Gostaria de saber mais sobre ${item.name}.`)} target="_blank" rel="noreferrer">Agendar avaliação <Arrow /></a>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div className="v4-shell v4-secondary-care" data-reveal>
-        <div className="v4-secondary-care__header">
-          <span className="v4-secondary-care__kicker">Outros atendimentos</span>
-          <h4>Cuidado integral para a sua saúde bucal</h4>
-        </div>
-        <div className="v4-secondary-care__grid">
-          {secondaryCare.map((item) => (
-            <article key={item.name} className="v4-secondary-care__card">
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <a href={wa(`Olá! Gostaria de saber mais sobre ${item.name} na IL Odontologia e Estética.`)} target="_blank" rel="noreferrer">
-                Saber mais <Arrow />
-              </a>
             </article>
           ))}
+        </div>
+        <div className="v5-other-care">
+          <div data-reveal><p className="v4-kicker">Outros atendimentos</p><h3>Do cuidado de rotina<br />à atenção que você precisa.</h3><p>Saúde bucal em todas as fases da vida.</p></div>
+          <div className="v5-care-list">
+            {secondaryCare.map((item, index) => (
+              <details key={item.name} data-reveal>
+                <summary><span className="v5-index">0{index + 4}</span><h4>{item.name}</h4><span className="v5-plus" aria-hidden="true">+</span></summary>
+                <div className="v5-care-answer"><p>{item.description}</p><a href={wa(`Olá! Gostaria de saber mais sobre ${item.name}.`)} target="_blank" rel="noreferrer">Conversar com a equipe <Arrow /></a></div>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -498,204 +414,76 @@ function TreatmentPanels() {
 
 function BeforeAfter() {
   const [active, setActive] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const touch = useRef(null);
+  const dialog = useRef(null);
   const item = beforeAfter[active];
-
+  const move = (direction) => setActive(index => (index + direction + beforeAfter.length) % beforeAfter.length);
+  useEffect(() => {
+    if (expanded) dialog.current?.showModal();
+    else dialog.current?.close();
+  }, [expanded]);
   return (
     <section className="v4-section v4-results" id="resultados">
       <div className="v4-shell">
         <div className="v4-results__head" data-reveal>
-          <div>
-            <p className="v4-kicker v4-kicker--dark">Antes & Depois</p>
-            <h2>Transformações reais com harmonia, saúde e precisão.</h2>
-          </div>
-          <p>
-            Registros clínicos reais conduzidos na IL Odontologia e Estética. Cada planejamento respeita a biologia e a anatomia facial, buscando harmonia natural e durabilidade.
-          </p>
+          <div><p className="v4-kicker v4-kicker--dark">Antes & Depois</p><h2>Pequenos detalhes.<br />Novas formas de sorrir.</h2></div>
+          <p>Explore os registros de antes e depois. Cada sorriso tem uma história e precisa de uma avaliação individual.</p>
         </div>
-
-        <div className="v4-results__stage" data-reveal>
-          <figure key={item.title}>
-            <img
-              src={item.image}
-              alt={`${item.title} — ${item.category} na IL Odontologia e Estética`}
-              loading="eager"
-            />
-          </figure>
-          <div className="v4-results__copy">
-            <div className="v4-results__meta">
-              <span className="v4-results__counter">{String(active + 1).padStart(2, '0')} / {String(beforeAfter.length).padStart(2, '0')}</span>
-              <span className="v4-results__badge">{item.badge}</span>
-            </div>
-            <p className="v4-results__cat">{item.category}</p>
-            <h3>{item.title}</h3>
-            
-            <div className="v4-results__sheet">
-              <div className="v4-sheet-item">
-                <span className="v4-sheet-label">Diagnóstico Clínico</span>
-                <p>{item.diagnosis}</p>
-              </div>
-              <div className="v4-sheet-item">
-                <span className="v4-sheet-label">Abordagem & Conduta</span>
-                <p>{item.approach}</p>
-              </div>
-            </div>
-
-            <p className="v4-results__caption">{item.caption}</p>
-            <small className="v4-results__disclaimer">
-              *Resultados variam conforme a avaliação clínica individual, estrutura óssea e saúde periodontal de cada paciente.
-            </small>
-
-            <div className="v4-results__action">
-              <Button href={wa(`Olá! Vi o caso de ${item.title} (${item.category}) no site da IL e gostaria de agendar uma avaliação.`)} external>
-                Avaliar meu caso
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div className="v4-results__nav" data-reveal>
-          {beforeAfter.map((caseItem, index) => (
-            <button
-              type="button"
-              key={caseItem.title}
-              className={active === index ? 'is-active' : ''}
-              onClick={() => setActive(index)}
-              aria-label={`Visualizar ${caseItem.title}`}
-            >
-              <span className="v4-results__nav-idx">{String(index + 1).padStart(2, '0')}</span>
-              <div className="v4-results__nav-text">
-                <span className="v4-results__nav-title">{caseItem.title}</span>
-                <span className="v4-results__nav-cat">{caseItem.category}</span>
-              </div>
+        <div className="v5-case-stage" data-reveal>
+          <div className="v5-case-media" onTouchStart={event => { const point = event.touches[0]; touch.current = { x: point.clientX, y: point.clientY }; }} onTouchEnd={event => {
+            const point = event.changedTouches[0]; const start = touch.current;
+            if (start && Math.abs(point.clientX - start.x) > 60 && Math.abs(point.clientX - start.x) > Math.abs(point.clientY - start.y)) move(point.clientX < start.x ? 1 : -1);
+            touch.current = null;
+          }}>
+            <button type="button" className="v5-case-zoom" onClick={() => setExpanded(true)} aria-label={`Ampliar ${item.title}`}>
+              <img key={item.id} src={item.image} alt={`${item.title}: registro de antes e depois`} />
+              <span>Ampliar imagem ↗</span>
             </button>
-          ))}
+          </div>
+          <div className="v5-case-copy">
+            <p className="v4-kicker v4-kicker--dark">Um olhar para a transformação</p>
+            <div aria-live="polite" aria-atomic="true"><span className="v5-case-number">0{active + 1}<small> / 0{beforeAfter.length}</small></span><h3>{item.title}</h3><p>Veja os detalhes do registro original e converse com a equipe sobre as possibilidades para o seu sorriso.</p></div>
+            <p className="v5-case-note">Os resultados são individuais. As imagens não representam uma promessa de resultado.</p>
+            <Button href={wa(`Olá! Vi a ${item.title} no site e gostaria de agendar uma avaliação.`)} external>Avaliar meu caso</Button>
+            <div className="v5-case-controls"><button type="button" onClick={() => move(-1)} aria-label="Transformação anterior">←</button><span>Explore os casos</span><button type="button" onClick={() => move(1)} aria-label="Próxima transformação">→</button></div>
+          </div>
         </div>
+        <div className="v5-case-nav" aria-label="Selecionar transformação">
+          {beforeAfter.map((entry, index) => <button key={entry.id} type="button" className={index === active ? 'is-active' : ''} aria-pressed={index === active} onClick={() => setActive(index)}><img src={entry.image} alt="" loading="lazy" /><span><small>0{index + 1}</small>{entry.title}</span><Arrow /></button>)}
+        </div>
+        <dialog className="v5-case-dialog" ref={dialog} onCancel={() => setExpanded(false)} onClose={() => setExpanded(false)} onClick={event => { if (event.target === event.currentTarget) setExpanded(false); }} aria-label={`${item.title} ampliada`}>
+          <button type="button" autoFocus onClick={() => setExpanded(false)} aria-label="Fechar imagem ampliada">Fechar ×</button><img src={item.image} alt={`${item.title}: registro original de antes e depois`} />
+        </dialog>
       </div>
     </section>
   );
 }
 
 function Specialists() {
-  const leadSpecialist = specialists[0];
-  const otherSpecialists = specialists.slice(1);
-
+  const track = useRef(null);
+  const [active, setActive] = useState(0);
+  function select(index) {
+    const element = track.current?.children[index];
+    if (!element) return;
+    track.current.scrollTo({left: element.offsetLeft - track.current.firstElementChild.offsetLeft, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  }
   return (
     <section className="v4-section v4-specialists" id="especialistas">
       <div className="v4-shell">
-        <div className="v4-section-head v4-section-head--dark" data-reveal>
-          <p className="v4-kicker">Corpo Clínico Integrado</p>
-          <h2>Quatro olhares especializados, uma mesma filosofia de cuidado.</h2>
-          <p>Conheça a equipe multidisciplinar que conduz cada etapa do seu tratamento com rigor e proximidade.</p>
-        </div>
-
-        {/* Editorial Magazine Layout */}
-        <div className="v4-specialists__editorial" data-reveal>
-          {/* Dra. Layla Beatriz - Lead Specialist Feature */}
-          <article className="v4-lead-specialist">
-            <div className="v4-lead-specialist__media">
-              <img src={leadSpecialist.image} alt={`Foto de ${leadSpecialist.name}`} loading="lazy" />
-              <div className="v4-lead-specialist__media-badge">
-                <span>{leadSpecialist.roleTag}</span>
-              </div>
-            </div>
-            <div className="v4-lead-specialist__body">
-              <span className="v4-specialist-num">01 · DIREÇÃO CLÍNICA</span>
-              <h3>{leadSpecialist.name}</h3>
-              <p className="v4-specialist-sub">{leadSpecialist.specialty}</p>
-              
-              <blockquote className="v4-specialist-quote">
-                “Acreditamos em uma odontologia que valoriza a singularidade e a beleza natural de cada pessoa, unindo precisão estética e saúde funcional duradoura.”
-              </blockquote>
-
-              <div className="v4-specialist-highlights">
-                <span>Facetas cerâmicas e lentes de contato</span>
-                <span>Planejamento estético digital</span>
-                <span>Clareamento dental guiado</span>
-              </div>
-
-              <div className="v4-lead-specialist__cta">
-                <Button href={wa(`Olá! Gostaria de agendar uma consulta com a ${leadSpecialist.name}.`)} external>
-                  Agendar com Dra. Layla
-                </Button>
-              </div>
-            </div>
-          </article>
-
-          {/* Trio Grid: Dr. Hugo, Dra. Hanna, Dr. Ismael */}
-          <div className="v4-trio-specialists">
-            {otherSpecialists.map((person, idx) => (
-              <article
-                key={person.id}
-                className={`v4-specialist-card ${person.photoPending ? 'is-photo-pending' : ''}`}
-              >
-                <div className="v4-specialist-card__media">
-                  <img
-                    src={person.image}
-                    alt={`Foto de ${person.name}`}
-                    loading="lazy"
-                    className={person.photoPending ? 'is-placeholder-graphic' : ''}
-                  />
-                  <div className="v4-specialist-card__badge">
-                    <span>{person.roleTag}</span>
-                  </div>
-                </div>
-
-                <div className="v4-specialist-card__body">
-                  <div className="v4-specialist-card__top">
-                    <span className="v4-specialist-num">0{idx + 2}</span>
-                    <h3>{person.name}</h3>
-                  </div>
-
-                  <p className="v4-specialist-card__spec">{person.specialty}</p>
-                  <p className="v4-specialist-card__diff">{person.differential}</p>
-
-                  <div className="v4-specialist-card__footer">
-                    <a
-                      href={wa(`Olá! Gostaria de agendar uma consulta e saber mais sobre o atendimento do ${person.name}.`)}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="v4-specialist-card__link"
-                    >
-                      <span>Agendar consulta</span>
-                      <Arrow />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Horizontal Carousel */}
-        <div className="v4-specialists__mobile-track" data-reveal>
+        <div className="v4-section-head v4-section-head--dark" data-reveal><p className="v4-kicker">Corpo clínico</p><h2>Quatro profissionais.<br />O mesmo compromisso com você.</h2><p>Conheça quem cuida do seu sorriso.</p></div>
+        <div className="v5-team-grid" ref={track} onScroll={() => {
+          const items = [...track.current.children]; const left = track.current.scrollLeft;
+          setActive(items.reduce((best, el, index) => Math.abs(el.offsetLeft - items[0].offsetLeft - left) < Math.abs(items[best].offsetLeft - items[0].offsetLeft - left) ? index : best, 0));
+        }}>
           {specialists.map((person, index) => (
-            <article className="v4-mobile-person" key={person.id}>
-              <div className="v4-mobile-person__media">
-                <img
-                  src={person.image}
-                  alt={`Foto de ${person.name}`}
-                  loading="lazy"
-                  className={person.photoPending ? 'is-placeholder-graphic' : ''}
-                />
-                <span className="v4-mobile-person__tag">{person.roleTag}</span>
-              </div>
-              <div className="v4-mobile-person__body">
-                <span className="v4-specialist-num">0{index + 1}</span>
-                <h3>{person.name}</h3>
-                <p className="v4-mobile-person__spec">{person.specialty}</p>
-                <p className="v4-mobile-person__diff">{person.differential}</p>
-                <a
-                  href={wa(`Olá! Gostaria de agendar uma consulta com ${person.name}.`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="v4-mobile-person__cta"
-                >
-                  Agendar consulta <Arrow />
-                </a>
-              </div>
+            <article className="v5-person" key={person.id}>
+              <div className="v5-person-media"><img src={person.image} alt={person.name} loading="lazy" /><span>0{index + 1}</span></div>
+              <div className="v5-person-body"><p className="v5-index">{person.roleTag}</p><h3>{person.name}</h3><p className="v5-person-spec">{person.specialty}</p><p>{person.differential}</p><a className="v5-person-cta" href={wa(`Olá! Gostaria de agendar uma consulta com ${person.name}.`)} target="_blank" rel="noreferrer">Agendar consulta <Arrow /></a><div className="v5-person-social">{person.instagram && <a href={person.instagram} target="_blank" rel="noreferrer">Perfil profissional ↗</a>}</div></div>
             </article>
           ))}
         </div>
+        <div className="v5-team-nav" aria-label="Navegar pela equipe">{specialists.map((person, index) => <button type="button" key={person.id} onClick={() => select(index)} aria-label={`Ver ${person.name}`} aria-pressed={active === index}>0{index + 1}</button>)}<span>Deslize para conhecer →</span></div>
       </div>
     </section>
   );
@@ -705,7 +493,7 @@ function Experience() {
   const items = [
     ['01 · Escuta Atenta', 'Compreendemos suas expectativas, histórico de saúde e eventuais receios antes de qualquer intervenção.'],
     ['02 · Planejamento Claro', 'Explicamos cada etapa, opções de materiais e prazos de forma transparente, didática e sem termos complicados.'],
-    ['03 · Conforto e Biossegurança', 'Atendimento com isolamento acústico, anestesia precisa e rigor hospitalar de esterilização.'],
+    ['03 · Conforto e Biossegurança', 'Cuidado com o ambiente e atenção ao seu conforto durante o atendimento.'],
     ['04 · Acompanhamento Contínuo', 'Suporte pós-procedimento próximo e monitoramento preventivo para preservar seu sorriso saudável a longo prazo.'],
   ];
 
@@ -751,7 +539,7 @@ function Testimonials() {
           <h2>A experiência contada por quem viveu nosso atendimento.</h2>
         </div>
 
-        <blockquote data-reveal key={item.name}>
+        <blockquote data-reveal>
           <span className="v4-quote">“</span>
           <p>{item.quote}</p>
           <footer>
@@ -915,6 +703,7 @@ function MobileDock() {
 
 export default function AppV4() {
   useReveal();
+  useEffect(() => initV4Motion(), []);
 
   return (
     <>
