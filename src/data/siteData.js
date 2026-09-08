@@ -1,3 +1,5 @@
+import ismaelImage from './ismaelImage';
+
 export const clinic = {
   name: 'IL Odontologia e Estética',
   phoneDisplay: '(88) 99984-5437',
@@ -85,12 +87,11 @@ export const specialists = [
     specialty: 'Cirurgião-dentista, com residência em Saúde da Família. Mestrando em Saúde e Sociedade pela UERN.',
     differential: 'Comunicação acolhedora e cuidado preventivo com foco especial em pacientes que sentem ansiedade ou medo de consultas.',
     cro: 'CRO-CE',
-    image: "/assets/team/ismael-lima.jpg",
-    instagram: "https://www.instagram.com/dr.ismaellima_/",
+    image: ismaelImage,
+    instagram: 'https://www.instagram.com/dr.ismaellima_/',
     photoPending: false,
     featured: false,
   },
-
   {
     id: 'hugo-mota',
     name: 'Dr. Hugo Mota',
