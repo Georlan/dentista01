@@ -68,6 +68,8 @@ export const treatments = [
   },
 ];
 
+const ismaelPlaceholder = "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%201000'%3E%3Crect%20width='800'%20height='1000'%20fill='%23191A1D'/%3E%3Ccircle%20cx='400'%20cy='420'%20r='150'%20fill='none'%20stroke='%23C5A880'%20stroke-width='2'/%3E%3Ctext%20x='400'%20y='458'%20text-anchor='middle'%20fill='%23C5A880'%20font-family='Georgia'%20font-size='118'%3EIS%3C/text%3E%3Ctext%20x='400'%20y='650'%20text-anchor='middle'%20fill='%23FFFFFF'%20font-family='Arial'%20font-size='26'%20letter-spacing='4'%3ERETRATO%20EM%20ATUALIZA%C3%87%C3%83O%3C/text%3E%3C/svg%3E";
+
 export const specialists = [
   {
     name: 'Dra. Layla Beatriz',
@@ -86,6 +88,13 @@ export const specialists = [
     specialty: 'Especialista em ortodontia (aparelhos dentários).',
     cro: 'CRO-CE',
     image: assets.team[2],
+  },
+  {
+    name: 'Dr. Ismael Lima',
+    specialty: 'Cirurgião-dentista com atuação em clínica geral, prevenção e atendimento humanizado. Mestrando em Saúde.',
+    cro: 'CRO-CE',
+    image: ismaelPlaceholder,
+    photoPending: true,
   },
 ];
 
